@@ -111,12 +111,37 @@ document.addEventListener("DOMContentLoaded", function () {
   const contents = document.querySelectorAll(".main-banner_content-block");
   contents.forEach((content, index) => {
     if (index === 0) {
-      content.style.display = "grid"; 
+      content.style.display = "grid";
       requestAnimationFrame(() => {
-        content.classList.add("active"); 
+        content.classList.add("active");
       });
     } else {
-      content.style.display = "none"; 
+      content.style.display = "none";
     }
+  });
+
+  const dropdownButtons = document.querySelectorAll(".dropdown-button");
+  const dropdownMenus = document.querySelectorAll(".dropdown-menu");
+
+  dropdownButtons.forEach((button, index) => {
+    button.addEventListener("click", (event) => {
+      dropdownMenus.forEach((menu, i) => {
+        if (i !== index) {
+          menu.style.display = "none";
+        }
+      });
+
+      const currentMenu = dropdownMenus[index];
+      currentMenu.style.display =
+        currentMenu.style.display === "grid" ? "none" : "grid";
+
+      event.stopPropagation();
+    });
+  });
+
+  document.addEventListener("click", () => {
+    dropdownMenus.forEach((menu) => {
+      menu.style.display = "none";
+    });
   });
 });
