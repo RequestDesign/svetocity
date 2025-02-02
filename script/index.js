@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       breakpoints: {
         789: {
           slidesPerView: "auto",
-          spaceBetween: 55,
+          spaceBetween: 65,
         },
         0: {
           grabCursor: true,
@@ -144,4 +144,104 @@ document.addEventListener("DOMContentLoaded", function () {
       menu.style.display = "none";
     });
   });
+
+  try {
+    ymaps.ready(function () {
+      var mapElement1 = document.getElementById("map");
+      var mapElement3 = document.getElementById("map3");
+
+      if (mapElement1) {
+        initMap1();
+      } else {
+        console.log(
+          "Элемент с ID 'map' не найден. Первая карта не будет инициализирована."
+        );
+      }
+
+      if (mapElement3) {
+        initMap3();
+      } else {
+        console.log(
+          "Элемент с ID 'map3' не найден. Третья карта не будет инициализирована."
+        );
+      }
+    });
+  } catch (error) {
+    console.error(
+      "Ошибка: ymaps не определен. Убедитесь, что библиотека Yandex Maps загружена.",
+      error
+    );
+  }
+
+  function initMap1() {
+    var myMap1 = new ymaps.Map("map", {
+      center: [55.628915, 37.441305],
+      zoom: 15,
+      controls: ["zoomControl", "typeSelector"],
+    });
+
+    var myPlacemark1 = new ymaps.Placemark(
+      [55.624815, 37.441336],
+      {
+        
+      },
+      {
+        iconLayout: "default#image",
+        iconImageHref: "assest/image/shop/map-image.png",
+        iconImageSize: [202, 50],
+        iconImageOffset: [-20, -50],
+      }
+    );
+
+    myMap1.geoObjects.add(myPlacemark1);
+
+    updateAddressPosition(myMap1, myPlacemark1, addressDiv1);
+  }
+
+  function initMap3() {
+    var myMap3 = new ymaps.Map("map3", {
+      center: [55.629975, 37.429999],
+      zoom: 15,
+      controls: ["zoomControl", "typeSelector"],
+    });
+
+    var myPlacemark3 = new ymaps.Placemark(
+      [55.629975, 37.422889],
+      {
+        
+      },
+      {
+        iconLayout: "default#image",
+        iconImageHref: "assest/image/shop/map-image.png",
+        iconImageSize: [202, 50],
+        iconImageOffset: [-20, -50],
+      }
+    );
+
+    myMap3.geoObjects.add(myPlacemark3);
+
+
+    updateAddressPosition(myMap3, myPlacemark3, addressDiv3);
+  }
+
+  function updateAddressPosition(myMap, myPlacemark, addressDiv) {
+    function positionAddress() {
+      if (myMap.projection) {
+        var coords = myPlacemark.geometry.getCoordinates();
+        var pixelCoords = myMap.projection.toGlobalPixels(
+          coords,
+          myMap.getZoom()
+        );
+        addressDiv.style.left = pixelCoords[0] + "px";
+        addressDiv.style.top = pixelCoords[1] - 30 + "px";
+      } else {
+        console.log("myMap.projection не определен.");
+      }
+    }
+
+    positionAddress();
+
+    myPlacemark.events.add("drag", positionAddress);
+    myPlacemark.events.add("dragend", positionAddress);
+  }
 });
