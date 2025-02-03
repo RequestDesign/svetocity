@@ -41,6 +41,52 @@ document.addEventListener("DOMContentLoaded", function () {
     console.warn("Swiper контейнер не найден: .mySwiper2");
   }
 
+  var swiperContainer = document.querySelector(".mySwiper4");
+
+  if (swiperContainer) {
+    var swiper = new Swiper(".mySwiper4", {
+      loop: true,
+      slidesPerView: "auto",
+      spaceBetween: 0,
+      centeredSlides: false,
+      speed: 1000,
+      navigation: {
+        nextEl: "#btn-arr_swip4-next",
+      },
+      breakpoints: {
+        789: {
+          slidesPerView: "auto",
+          centeredSlides: false,
+        },
+        0: {
+          slidesPerView: "auto",
+          centeredSlides: true,
+          spaceBetween: 10,
+        },
+      },
+      on: {
+        init: function () {
+          setTimeout(() => {
+            setActiveSlideStyles(swiper.activeIndex);
+          }, 100);
+        },
+        slideChangeTransitionEnd: function () {
+          setActiveSlideStyles(swiper.activeIndex);
+        },
+      },
+    });
+
+    function setActiveSlideStyles(activeIndex) {
+      swiper.slides.forEach((slide) => {
+        slide.classList.remove("swiper-slide-active");
+      });
+
+      swiper.slides[activeIndex].classList.add("swiper-slide-active");
+    }
+  } else {
+    console.warn("Swiper контейнер не найден: .mySwiper4");
+  }
+
   const heartIcons = document.querySelectorAll(".heard-slide");
   heartIcons.forEach((icon) => {
     icon.addEventListener("click", () => {
@@ -182,9 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var myPlacemark1 = new ymaps.Placemark(
       [55.624815, 37.441336],
-      {
-        
-      },
+      {},
       {
         iconLayout: "default#image",
         iconImageHref: "assest/image/shop/map-image.png",
@@ -207,9 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var myPlacemark3 = new ymaps.Placemark(
       [55.629975, 37.422889],
-      {
-        
-      },
+      {},
       {
         iconLayout: "default#image",
         iconImageHref: "assest/image/shop/map-image.png",
@@ -219,7 +261,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     myMap3.geoObjects.add(myPlacemark3);
-
 
     updateAddressPosition(myMap3, myPlacemark3, addressDiv3);
   }
