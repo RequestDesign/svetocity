@@ -195,28 +195,28 @@ document.addEventListener("DOMContentLoaded", function () {
     ymaps.ready(function () {
       var mapElement1 = document.getElementById("map");
       var mapElement3 = document.getElementById("map3");
+      var mapElement4 = document.getElementById("map4");
 
       if (mapElement1) {
         initMap1();
       } else {
-        console.log(
-          "Элемент с ID 'map' не найден. Первая карта не будет инициализирована."
-        );
+        console.log("Элемент с ID 'map' не найден. Первая карта не будет инициализирована.");
       }
 
       if (mapElement3) {
         initMap3();
       } else {
-        console.log(
-          "Элемент с ID 'map3' не найден. Третья карта не будет инициализирована."
-        );
+        console.log("Элемент с ID 'map3' не найден. Третья карта не будет инициализирована.");
+      }
+
+      if (mapElement4) {
+        initMap4();
+      } else {
+        console.log("Элемент с ID 'map4' не найден. Четвертая карта не будет инициализирована.");
       }
     });
   } catch (error) {
-    console.error(
-      "Ошибка: ymaps не определен. Убедитесь, что библиотека Yandex Maps загружена.",
-      error
-    );
+    console.error("Ошибка: ymaps не определен. Убедитесь, что библиотека Yandex Maps загружена.", error);
   }
 
   function initMap1() {
@@ -238,8 +238,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     myMap1.geoObjects.add(myPlacemark1);
-
-    updateAddressPosition(myMap1, myPlacemark1, addressDiv1);
   }
 
   function initMap3() {
@@ -261,28 +259,39 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     myMap3.geoObjects.add(myPlacemark3);
-
-    updateAddressPosition(myMap3, myPlacemark3, addressDiv3);
   }
 
-  function updateAddressPosition(myMap, myPlacemark, addressDiv) {
-    function positionAddress() {
-      if (myMap.projection) {
-        var coords = myPlacemark.geometry.getCoordinates();
-        var pixelCoords = myMap.projection.toGlobalPixels(
-          coords,
-          myMap.getZoom()
-        );
-        addressDiv.style.left = pixelCoords[0] + "px";
-        addressDiv.style.top = pixelCoords[1] - 30 + "px";
-      } else {
-        console.log("myMap.projection не определен.");
+  function initMap4() {
+    var myMap4 = new ymaps.Map("map4", {
+      center: [55.630500, 37.435000],
+      zoom: 13.5,
+      controls: ["zoomControl", "typeSelector"],
+    });
+
+    var myPlacemark4_1 = new ymaps.Placemark(
+      [55.624815, 37.441336],
+      {},
+      {
+        iconLayout: "default#image",
+        iconImageHref: "assest/image/shop/map-image.png",
+        iconImageSize: [202, 50],
+        iconImageOffset: [-20, -50],
       }
-    }
+    );
 
-    positionAddress();
+    var myPlacemark4_2 = new ymaps.Placemark(
+      [55.629975, 37.422889],
+      {},
+      {
+        iconLayout: "default#image",
+        iconImageHref: "assest/image/shop/map-image.png",
+        iconImageSize: [202, 50],
+        iconImageOffset: [-20, -50],
+      }
+    );
 
-    myPlacemark.events.add("drag", positionAddress);
-    myPlacemark.events.add("dragend", positionAddress);
+    myMap4.geoObjects.add(myPlacemark4_1);
+    myMap4.geoObjects.add(myPlacemark4_2);
   }
+
 });
