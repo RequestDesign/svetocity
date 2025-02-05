@@ -3,48 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин Киевском шоссе</title>
+    <title>Оплата</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=5f2fb3bc-4f36-4af2-b420-52b267e41a89" type="text/javascript"></script>
     <link rel="stylesheet" href="style/style.css" />
 </head>
 <body>
-    
     <main>
         <section class="main-block">
             <div class="container">
-                <div class="main-shop_content-map">
-                    <div class="main-shop_content">
-                        <div class="shop-content_left">
-                           <div class="shop-content_left-block">
-                                <div class="h1">Магазин “SVETOCITY” на Киевском шоссе</div>
-                                <div class="txt-main">23 км Киевского шоссе, влад. 8, стр. 1, «FAMILY ROOM», павильон 2/16, 2-й этаж</div>
-                           </div> 
-                           <div class="shop-block">
-                                <div class="h2">График работы:</div>
-                                <div class="shop-block_time">
-                                    <div class="h3">9:00-19:00</div>
-                                    <div class="txt-main txt-gray">Понедельник - пятница</div>
-                                </div>
-                                <div class="shop-block_time">
-                                    <div class="h3">10:00-18:00</div>
-                                    <div class="txt-main txt-gray">Суббота, воскресенье</div>
-                                </div>
-                                <div class="txt-20 txt-green">+7 (967) 035-92-37</div>
-                           </div>
-                        </div>
-                        <div class="shop-content_rigth">
-                            <img class="shop-image" src="assest/image/shop/map-image2.png" alt="">
-                        </div>
+                <div class="guarantee-content">
+                    <div class="guarantee-content_top">
+                        <div class="h1">Оплата</div>
                     </div>
-                    <div class="map-content_top">
-                        <div class="size-main_map" id="map3"></div>
+                    <div class="guarantee-content_main">
+                        <div class="guarantee-content_main-block">
+                            <div class="guarantee-content_box">
+                                <div class="h2">Наличными курьеру</div>
+                                <div class="guarantee-content">
+                                    <div class="txt-main">При получении товара. Все необходимые сопроводительные документы курьер вручит вместе с заказом. Внимание! Товары со статусом "под заказ" поставляются только после предоплаты.</div>
+                                </div>
+                            </div>
+                            <div class="guarantee-content_box">
+                                <div class="h2">Банковской картой на сайте</div>
+                                <div class="guarantee-content">
+                                    <div class="txt-main">Оплата покупки при заказе на сайте. Мы принимаем платежные карты VISA/VISA Electron, МИР/JCB и MasterCard/Maestro.</div>
+                                </div>
+                            </div>
+                            <div class="guarantee-content_box">
+                                <div class="h2">Банковской картой курьеру</div>
+                                <div class="guarantee-content">
+                                    <div class="txt-main">При получении товара. Все необходимые сопроводительные документы курьер вручит вместе с заказом. Внимание! Товары со статусом "под заказ" поставляются только после предоплаты.</div>
+                                </div>
+                            </div>
+                            <div class="guarantee-content_box">
+                                <div class="h2">Картой рассрочки</div>
+                                <div class="guarantee-content">
+                                    <div class="txt-main">Оплата картой "Халва" на сайте с рассрочкой платежа на 10 месяцев для всех регионов России. Картой "Халва" также можно оплатить заказ курьеру.</div>
+                                </div>
+                            </div>
+                            <div class="guarantee-content_box">
+                                <div class="h2">Безналичным переводом</div>
+                                <div class="guarantee-content">
+                                    <div class="txt-main">Перечисление денежных средств безналичным переводом для оплаты заказа - это быстро, удобно и безопасно. Реквизиты нашей компании для перевода на расчетный счет.</div>
+                                </div>
+                            </div>
+                            <div class="guarantee-content_box">
+                                <div class="h2">Оплата по ссылке</div>
+                                <div class="guarantee-content">
+                                    <div class="txt-main">После обсуждения заказа с менеджером, мы отправим вам ссылку на оплату. Перейдите по ссылке, и вы сможете оплатить заказ в течение 1-й минуты.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="guarantee-content_main-block">
+                            <div class="guarantee-content_box">
+                                <div class="h2">Условия оплаты</div>
+                                <div class="guarantee-content">
+                                    <div class="txt-main">Для выбора оплаты товара с помощью банковской карты на соответствующей странице необходимо нажать кнопку Оплата заказа банковской картой. Оплата происходит через ПАО СБЕРБАНК с использованием банковских карт следующих платёжных систем:</div>
+                                </div>
+                                
+                            </div>
+                            <div class="payment-block">
+                                <div class="payment-block_flex">
+                                    <img class="card-image" src="assest/image/payment/МИР.png" alt="">
+                                    <img class="card-image" src="assest/image/payment/visa.png" alt="">
+                                </div>
+                                <div class="payment-block_flex">
+                                    <img class="card-image" src="assest/image/payment/mc.png" alt="">
+                                    <img class="card-image" src="assest/image/payment/jcb.png" alt="">
+                                </div>
+                            </div>
+                            <div class="guarantee-content_box">
+                                <div class="guarantee-content">
+                                    <div class="txt-main">Для оплаты (ввода реквизитов Вашей карты) Вы будете перенаправлены на платёжный шлюз ПАО СБЕРБАНК. Соединение с платёжным шлюзом и передача информации осуществляется в защищённом режиме с использованием протокола шифрования SSL. В случае если Ваш банк поддерживает технологию безопасного проведения интернет-платежей Verified By Visa, MasterCard SecureCode, MIR Accept, J-Secure, для проведения платежа также может потребоваться ввод специального пароля.</div>
+                                </div>
+                            </div>
+                            <div class="guarantee-content_box">
+                                <div class="guarantee-content">
+                                    <div class="txt-main">Настоящий сайт поддерживает 256-битное шифрование. Конфиденциальность сообщаемой персональной информации обеспечивается ПАО СБЕРБАНК. Введённая информация не будет предоставлена третьим лицам за исключением случаев, предусмотренных законодательством РФ. Проведение платежей по банковским картам осуществляется в строгом соответствии с требованиями платёжных систем МИР, Visa Int., MasterCard Europe Sprl, JCB.</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
             </div>
         </section>
     </main>
+
     <footer>
         <div class="container">
             <div class="footer-content">

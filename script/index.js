@@ -200,23 +200,32 @@ document.addEventListener("DOMContentLoaded", function () {
       if (mapElement1) {
         initMap1();
       } else {
-        console.log("Элемент с ID 'map' не найден. Первая карта не будет инициализирована.");
+        console.log(
+          "Элемент с ID 'map' не найден. Первая карта не будет инициализирована."
+        );
       }
 
       if (mapElement3) {
         initMap3();
       } else {
-        console.log("Элемент с ID 'map3' не найден. Третья карта не будет инициализирована.");
+        console.log(
+          "Элемент с ID 'map3' не найден. Третья карта не будет инициализирована."
+        );
       }
 
       if (mapElement4) {
         initMap4();
       } else {
-        console.log("Элемент с ID 'map4' не найден. Четвертая карта не будет инициализирована.");
+        console.log(
+          "Элемент с ID 'map4' не найден. Четвертая карта не будет инициализирована."
+        );
       }
     });
   } catch (error) {
-    console.error("Ошибка: ymaps не определен. Убедитесь, что библиотека Yandex Maps загружена.", error);
+    console.error(
+      "Ошибка: ymaps не определен. Убедитесь, что библиотека Yandex Maps загружена.",
+      error
+    );
   }
 
   function initMap1() {
@@ -263,7 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function initMap4() {
     var myMap4 = new ymaps.Map("map4", {
-      center: [55.630500, 37.435000],
+      center: [55.6305, 37.435],
       zoom: 13.5,
       controls: ["zoomControl", "typeSelector"],
     });
@@ -294,4 +303,31 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
+  document.getElementById("openModal").onclick = function () {
+    const modal = document.getElementById("modal");
+    if (modal) {
+      modal.style.display = "flex";
+    } else {
+      console.error("Модальное окно не найдено на странице");
+    }
+  };
+
+  const closeButton = document.querySelector(".close-ceiling");
+  if (closeButton) {
+    closeButton.onclick = function () {
+      const modal = document.getElementById("modal");
+      if (modal) {
+        modal.style.display = "none";
+      }
+    };
+  } else {
+    console.error("Кнопка закрытия не найдена");
+  }
+
+  window.onclick = function (event) {
+    const modal = document.getElementById("modal");
+    if (modal && event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
 });
