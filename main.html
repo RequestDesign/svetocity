@@ -6,6 +6,7 @@
     <title>Главная страница</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=5f2fb3bc-4f36-4af2-b420-52b267e41a89" type="text/javascript"></script>
     <link rel="stylesheet" href="style/style.css" />
   </head>
   <body>
@@ -94,12 +95,1289 @@
                         
                         <div class="header-content_main-block">
                             <div class="header-content_main-left">
-                                <button class="btn-catalog">
-                                    <svg class="btn-catalog_svg" width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="btn-catalog"  onclick="toggleCatalog()">
+                                    <svg class="btn-catalog_svg open" width="27" height="20" viewBox="0 0 27 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0 1.85087C0 1.4926 0.142232 1.149 0.395406 0.895661C0.64858 0.642324 0.991958 0.5 1.35 0.5H25.65C26.008 0.5 26.3514 0.642324 26.6046 0.895661C26.8578 1.149 27 1.4926 27 1.85087C27 2.20914 26.8578 2.55274 26.6046 2.80608C26.3514 3.05942 26.008 3.20174 25.65 3.20174H1.35C0.991958 3.20174 0.64858 3.05942 0.395406 2.80608C0.142232 2.55274 0 2.20914 0 1.85087ZM0 9.99932C0 9.64105 0.142232 9.29745 0.395406 9.04411C0.64858 8.79078 0.991958 8.64845 1.35 8.64845H25.65C26.008 8.64845 26.3514 8.79078 26.6046 9.04411C26.8578 9.29745 27 9.64105 27 9.99932C27 10.3576 26.8578 10.7012 26.6046 10.9545C26.3514 11.2079 26.008 11.3502 25.65 11.3502H1.35C0.991958 11.3502 0.64858 11.2079 0.395406 10.9545C0.142232 10.7012 0 10.3576 0 9.99932ZM1.35 16.7983C0.991958 16.7983 0.64858 16.9406 0.395406 17.1939C0.142232 17.4473 0 17.7909 0 18.1491C0 18.5074 0.142232 18.851 0.395406 19.1043C0.64858 19.3577 0.991958 19.5 1.35 19.5H25.65C26.008 19.5 26.3514 19.3577 26.6046 19.1043C26.8578 18.851 27 18.5074 27 18.1491C27 17.7909 26.8578 17.4473 26.6046 17.1939C26.3514 16.9406 26.008 16.7983 25.65 16.7983H1.35Z" fill="#5DAF4C" fill-opacity="0.9"/>
                                     </svg>
+                                    <svg class="btn-catalog_svg close" width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                        <path d="M2.83301 0.966364L9.50028 7.63364L16.133 1.00091C16.2795 0.844966 16.456 0.720218 16.6519 0.634144C16.8478 0.54807 17.0591 0.502443 17.273 0.5C17.7311 0.5 18.1704 0.68198 18.4944 1.00591C18.8183 1.32983 19.0003 1.76917 19.0003 2.22727C19.0043 2.43904 18.965 2.6494 18.8848 2.84543C18.8046 3.04147 18.6852 3.21905 18.5339 3.36727L11.8148 10L18.5339 16.7191C18.8186 16.9976 18.9855 17.3747 19.0003 17.7727C19.0003 18.2308 18.8183 18.6702 18.4944 18.9941C18.1704 19.318 17.7311 19.5 17.273 19.5C17.0529 19.5091 16.8332 19.4724 16.6281 19.3921C16.4229 19.3118 16.2367 19.1897 16.0812 19.0336L9.50028 12.3664L2.85028 19.0164C2.70434 19.1671 2.52998 19.2875 2.33728 19.3705C2.14459 19.4535 1.93736 19.4975 1.72755 19.5C1.26945 19.5 0.830114 19.318 0.506187 18.9941C0.182261 18.6702 0.000281039 18.2308 0.000281039 17.7727C-0.00374609 17.561 0.035544 17.3506 0.11574 17.1546C0.195937 16.9585 0.315348 16.781 0.466645 16.6327L7.18573 10L0.466645 3.28091C0.181964 3.0024 0.0150313 2.62526 0.000281039 2.22727C0.000281039 1.76917 0.182261 1.32983 0.506187 1.00591C0.830114 0.68198 1.26945 0.5 1.72755 0.5C2.1421 0.505182 2.53937 0.672727 2.83301 0.966364Z" fill="#6CB75E"/>
+                                    </svg>                                        
                                     <span class="txt-18">Каталог</span>
                                 </button>
+                                
+                                <div class="catalog-menu">
+                                    <div class="catalog-menu_block">
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('chandeliers', this)">Люстры 
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                                </button>
+                                            <div id="chandeliers" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('chandeliers-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="chandeliers-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('chandeliers-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="chandeliers-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Арт-деко</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Кантри</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Тиффани</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Прованс</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Восточный</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Замковый</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Лофт</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Морской</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Ретро</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Неоклассика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Дизайнерский</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Скандинавский</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Минимализм</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Американский</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Флористика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Японский</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Эко</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Мегаполис</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Кристал</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Элеганс</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Хрусталь</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Винтажный</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Этнический</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Индустриальный</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Техно</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('chandeliers-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="chandeliers-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Хрустальные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Деревянные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Стеклянные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Пластиковые</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Текстильные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Керамические</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металлические</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Кованые</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Каменные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Бетонные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Силиконовые</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Бумажные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Гипсокартон</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">МДФ</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Акриловые</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло, экокожа</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл, стекло, хрусталь</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Алюминий</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Сталь</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл, мрамор, стекло, хрусталь</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Смола</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл, ПММА</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Акрил</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('chandeliers-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="chandeliers-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('fixtures', this)">Светильники 
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="fixtures" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('fixtures-types' , this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="fixtures-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">П222одвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('fixtures-styles' , this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="fixtures-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('fixtures-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="fixtures-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('fixtures-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="fixtures-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('walllamp', this)">Бра
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="walllamp" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('walllamp-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="walllamp-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочны66е</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('walllamp-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="walllamp-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('walllamp-materials' , this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="walllamp-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('walllamp-usage' , this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="walllamp-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op ">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('spots' , this)">Споты
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="spots" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('spots-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="spots-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('spots-styles', this)" class="txt-20">Сти334ли
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="spots-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Клас345сика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('spots-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="spots-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('spots-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="spots-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('desktop' , this)">Настольные лампы
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="desktop" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('desktop-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="desktop-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесныыаве</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('desktop-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="desktop-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('desktop-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="desktop-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('desktop-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="desktop-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('floor' , this)">Торшеры
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="floor" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('floor-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="floor-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('floor-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="floor-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('floor-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="floor-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('floor-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="floor-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('tracking', this)">Трековые сиситемы 
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="tracking" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('tracking-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="tracking-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('tracking-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="tracking-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('tracking-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="tracking-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('tracking-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="tracking-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('trackingdata', this)">Светодиодная подсветка
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="trackingdata" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('trackingdata-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="trackingdata-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('trackingdata-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="trackingdata-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('trackingdata-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="trackingdata-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('trackingdata-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="trackingdata-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('outdoor', this)">Уличное освещение
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="outdoor" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('outdoor-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="outdoor-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('outdoor-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="outdoor-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('outdoor-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="outdoor-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('outdoor-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="outdoor-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('office', this)">Офисное освещение
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="office" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('office-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="office-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('office-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="office-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('office-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="office-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('office-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="office-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('electrical', this)">Электротовары
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="electrical" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('electrical-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="electrical-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('electrical-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="electrical-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('electrical-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="electrical-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('electrical-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="electrical-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('sockets', this)">Розетки
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="sockets" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('sockets-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="sockets-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('sockets-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="sockets-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('sockets-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="sockets-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('sockets-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="sockets-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="category-container">
+                                            <button class="category-btn txt-24-20" onclick="toggleSubMenu('switches', this)">Выключатели
+                                                <svg class="category-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_271_2671)">
+                                                    <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_271_2671">
+                                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </button>
+                                            <div id="switches" class="sub-menu">
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('switches-types', this)" class="txt-20">Виды 
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="switches-types" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Подвесные</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Потолочные</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('switches-styles', this)" class="txt-20">Стили
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="switches-styles" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Классика</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Модерн</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('switches-materials', this)" class="txt-20">Материалы
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="switches-materials" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Стекло</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Металл</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-menu_block">
+                                                    <button onclick="toggleLinks('switches-usage', this)" class="txt-20">Место использования
+                                                        <svg class="menu-btn_arr-d" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_271_2671)">
+                                                            <path d="M7.5 10.5L12.5 15.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            <path d="M12.5 15.5L17.5 10.5" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </g>
+                                                            <defs>
+                                                            <clipPath id="clip0_271_2671">
+                                                            <rect width="24" height="24" fill="white" transform="translate(0.5 0.5)"/>
+                                                            </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </button>
+                                                    <div id="switches-usage" class="links">
+                                                        <a href="#" class="txt-18 txt-dark-op">Для спальни</a>
+                                                        <a href="#" class="txt-18 txt-dark-op">Для кухни</a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="search">
                                     <div class="search-block">
                                         <svg class="icon-search" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,16 +1404,15 @@
                             </button>
                             <a href="" class="btn-light">
                                 <svg class="btn-light_svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 18.75C3 17.5565 3.47411 16.4119 4.31802 15.568C5.16193 14.7241 6.30653 14.25 7.5 14.25H16.5C17.6935 14.25 18.8381 14.7241 19.682 15.568C20.5259 16.4119 21 17.5565 21 18.75C21 19.3467 20.7629 19.919 20.341 20.341C19.919 20.7629 19.3467 21 18.75 21H5.25C4.65326 21 4.08097 20.7629 3.65901 20.341C3.23705 19.919 3 19.3467 3 18.75Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
-                                    <path d="M12 9.75C13.864 9.75 15.375 8.23896 15.375 6.375C15.375 4.51104 13.864 3 12 3C10.136 3 8.625 4.51104 8.625 6.375C8.625 8.23896 10.136 9.75 12 9.75Z" stroke="#1A1A1A" stroke-width="1.5"/>
-                                </svg>                                
+                                    <path d="M16.05 5.15136C18.0354 5.15136 19.65 6.81338 19.65 8.85709C19.65 13.1826 14.6613 17.1403 12 19.0691C9.3387 17.1403 4.35 13.1826 4.35 8.85709C4.35 6.81338 5.9646 5.15136 7.95 5.15136C8.52808 5.1527 9.09738 5.29697 9.61 5.57201C10.1226 5.84705 10.5636 6.24483 10.8957 6.73185L12 8.35033L13.1043 6.73278C13.4363 6.24558 13.8772 5.84763 14.3899 5.57242C14.9025 5.29721 15.4718 5.15281 16.05 5.15136ZM16.05 3.76172C15.255 3.7616 14.4717 3.95894 13.7667 4.33699C13.0616 4.71504 12.4556 5.26263 12 5.93327C11.5444 5.26263 10.9384 4.71504 10.2333 4.33699C9.52826 3.95894 8.74499 3.7616 7.95 3.76172C6.63718 3.76172 5.37813 4.29855 4.44982 5.25412C3.52152 6.20968 3 7.50571 3 8.85709C3 14.1553 8.85 18.5272 12 20.7617C15.15 18.5272 21 14.1553 21 8.85709C21 8.18795 20.872 7.52537 20.6232 6.90717C20.3744 6.28898 20.0098 5.72727 19.5502 5.25412C19.0905 4.78097 18.5448 4.40565 17.9443 4.14958C17.3437 3.89351 16.7 3.76172 16.05 3.76172Z" fill="#1A1A1A"/>
+                                </svg>
+                                                                    
                                 <span class="txt-regul-16">Избранное</span>
                             </a>
                             <a href="" class="btn-light">
                                 <svg class="btn-light_svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 18.75C3 17.5565 3.47411 16.4119 4.31802 15.568C5.16193 14.7241 6.30653 14.25 7.5 14.25H16.5C17.6935 14.25 18.8381 14.7241 19.682 15.568C20.5259 16.4119 21 17.5565 21 18.75C21 19.3467 20.7629 19.919 20.341 20.341C19.919 20.7629 19.3467 21 18.75 21H5.25C4.65326 21 4.08097 20.7629 3.65901 20.341C3.23705 19.919 3 19.3467 3 18.75Z" stroke="#1A1A1A" stroke-width="1.5" stroke-linejoin="round"/>
-                                    <path d="M12 9.75C13.864 9.75 15.375 8.23896 15.375 6.375C15.375 4.51104 13.864 3 12 3C10.136 3 8.625 4.51104 8.625 6.375C8.625 8.23896 10.136 9.75 12 9.75Z" stroke="#1A1A1A" stroke-width="1.5"/>
-                                </svg>                                
+                                    <path d="M3 3.64272C3 3.47226 3.06772 3.30878 3.18825 3.18825C3.30879 3.06771 3.47227 3 3.64273 3H4.20577C5.1403 3 5.67763 3.60801 5.98871 4.21474C6.20081 4.62994 6.35378 5.1364 6.48104 5.57602H19.7149C19.9135 5.57608 20.1095 5.62216 20.2873 5.71066C20.4651 5.79916 20.62 5.92766 20.7398 6.08607C20.8596 6.24449 20.9411 6.42852 20.9778 6.62372C21.0146 6.81891 21.0056 7.01996 20.9515 7.2111L19.0285 13.9918C18.8755 14.5298 18.5513 15.0032 18.1049 15.3402C17.6586 15.6773 17.1145 15.8596 16.5552 15.8595H10.0264C9.46239 15.8597 8.91401 15.6745 8.4657 15.3323C8.01738 14.9902 7.69401 14.5101 7.54541 13.9661L6.72014 10.9389L6.70728 10.8977L5.38325 6.40127L5.25471 5.96808C5.12616 5.52332 5.01304 5.12997 4.84336 4.79961C4.63897 4.40113 4.45129 4.28544 4.20577 4.28544H3.64273C3.47227 4.28544 3.30879 4.21772 3.18825 4.09719C3.06772 3.97666 3 3.81318 3 3.64272ZM7.94647 10.5507L8.78588 13.6306C8.8603 13.9025 9.02204 14.1424 9.24619 14.3133C9.47033 14.4843 9.74446 14.5768 10.0264 14.5767H16.5565C16.836 14.5764 17.1078 14.485 17.3308 14.3164C17.5537 14.1477 17.7156 13.911 17.7919 13.6421L19.7149 6.86146H6.86025L7.94647 10.5507ZM12.0021 19.0718C12.0021 19.5832 11.799 20.0737 11.4374 20.4353C11.0758 20.7969 10.5853 21 10.0739 21C9.56253 21 9.07208 20.7969 8.71048 20.4353C8.34887 20.0737 8.14572 19.5832 8.14572 19.0718C8.14572 18.5605 8.34887 18.07 8.71048 17.7084C9.07208 17.3468 9.56253 17.1437 10.0739 17.1437C10.5853 17.1437 11.0758 17.3468 11.4374 17.7084C11.799 18.07 12.0021 18.5605 12.0021 19.0718ZM10.7167 19.0718C10.7167 18.9014 10.6489 18.7379 10.5284 18.6174C10.4079 18.4968 10.2444 18.4291 10.0739 18.4291C9.90346 18.4291 9.73997 18.4968 9.61944 18.6174C9.4989 18.7379 9.43119 18.9014 9.43119 19.0718C9.43119 19.2423 9.4989 19.4058 9.61944 19.5263C9.73997 19.6468 9.90346 19.7146 10.0739 19.7146C10.2444 19.7146 10.4079 19.6468 10.5284 19.5263C10.6489 19.4058 10.7167 19.2423 10.7167 19.0718ZM18.4295 19.0718C18.4295 19.5832 18.2263 20.0737 17.8647 20.4353C17.5031 20.7969 17.0126 21 16.5013 21C15.9899 21 15.4994 20.7969 15.1378 20.4353C14.7762 20.0737 14.5731 19.5832 14.5731 19.0718C14.5731 18.5605 14.7762 18.07 15.1378 17.7084C15.4994 17.3468 15.9899 17.1437 16.5013 17.1437C17.0126 17.1437 17.5031 17.3468 17.8647 17.7084C18.2263 18.07 18.4295 18.5605 18.4295 19.0718ZM17.144 19.0718C17.144 18.9014 17.0763 18.7379 16.9557 18.6174C16.8352 18.4968 16.6717 18.4291 16.5013 18.4291C16.3308 18.4291 16.1673 18.4968 16.0468 18.6174C15.9262 18.7379 15.8585 18.9014 15.8585 19.0718C15.8585 19.2423 15.9262 19.4058 16.0468 19.5263C16.1673 19.6468 16.3308 19.7146 16.5013 19.7146C16.6717 19.7146 16.8352 19.6468 16.9557 19.5263C17.0763 19.4058 17.144 19.2423 17.144 19.0718Z" fill="#1A1A1A"/>
+                                </svg>                               
                                 <span class="txt-regul-16">Корзина</span>
                             </a>
                            </div>
@@ -323,7 +1600,7 @@
                         </div>
                     </div>
                     <div class="popularproduct-content_main">
-                        <div class="swiper mySwiper2">
+                        <div class="swiper mySwiper3">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="popularproduct-swiper_slide-block">

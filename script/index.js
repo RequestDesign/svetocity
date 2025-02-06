@@ -40,6 +40,26 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.warn("Swiper контейнер не найден: .mySwiper2");
   }
+  var swiperContainer = document.querySelector(".mySwiper3");
+  if (swiperContainer) {
+    var swiper = new Swiper(".mySwiper3", {
+      slidesPerView: "auto",
+      spaceBetween: 20,
+      breakpoints: {
+        789: {
+          slidesPerView: "auto",
+        },
+        0: {
+          grabCursor: true,
+          spaceBetween: 20,
+        },
+      },
+    });
+  } else {
+    console.warn("Swiper контейнер не найден: .mySwiper3");
+  }
+
+
 
   var swiperContainer = document.querySelector(".mySwiper4");
 
@@ -308,7 +328,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (modal) {
       modal.style.display = "flex";
     } else {
-      console.error("Модальное окно не найдено на странице");
+      console.log("Модальное окно не найдено на странице");
     }
   };
 
@@ -321,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
   } else {
-    console.error("Кнопка закрытия не найдена");
+    console.log("Кнопка закрытия не найдена");
   }
 
   window.onclick = function (event) {
@@ -330,4 +350,102 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.style.display = "none";
     }
   };
+
+  document.addEventListener("click", function (event) {
+    let catalogButton = document.querySelector(".btn-catalog");
+    let catalogMenu = document.querySelector(".catalog-menu");
+    if (
+      catalogMenu &&
+      !catalogMenu.contains(event.target) &&
+      !catalogButton.contains(event.target)
+    ) {
+      // Закрываем меню, если кликнули вне его
+      catalogMenu.style.display = "none";
+      catalogButton.classList.remove("btn-catalog_active");
+      let openIcon = catalogButton.querySelector(".btn-catalog_svg.open");
+      let closeIcon = catalogButton.querySelector(".btn-catalog_svg.close");
+      openIcon.style.display = "flex";
+      closeIcon.style.display = "none";
+    }
+  });
 });
+function toggleCatalog() {
+  let button = document.querySelector(".btn-catalog");
+  let menu = document.querySelector(".catalog-menu");
+  let openIcon = button.querySelector(".btn-catalog_svg.open");
+  let closeIcon = button.querySelector(".btn-catalog_svg.close");
+
+  let isOpen = menu.style.display === "grid";
+
+  if (isOpen) {
+    menu.style.display = "none";
+    button.classList.remove("btn-catalog_active");
+    openIcon.style.display = "flex";
+    closeIcon.style.display = "none";
+  } else {
+    menu.style.display = "grid";
+    button.classList.add("btn-catalog_active");
+    openIcon.style.display = "none";
+    closeIcon.style.display = "flex";
+  }
+}
+
+let activeSubMenu = null;
+function toggleSubMenu(id, button) {
+  let subMenu = document.getElementById(id);
+  const isSmallScreen = window.matchMedia("(max-width: 48em)").matches;
+
+  if (activeSubMenu && activeSubMenu !== subMenu) {
+    activeSubMenu.style.display = "none";
+    activeSubMenu.previousElementSibling.classList.remove(
+      "category-btn_active"
+    );
+  }
+
+  if (subMenu) {
+    subMenu.style.display =
+      subMenu.style.display === (isSmallScreen ? "grid" : "flex")
+        ? "none"
+        : isSmallScreen
+        ? "grid"
+        : "flex";
+
+    if (subMenu.style.display === (isSmallScreen ? "grid" : "flex")) {
+      button.classList.add("category-btn_active");
+      activeSubMenu = subMenu;
+    } else {
+      button.classList.remove("category-btn_active");
+      activeSubMenu = null;
+    }
+  }
+}
+let activeLinkButton = null; 
+let activeLinksContainer = null; 
+
+function toggleLinks(id, button) {
+  let links = document.getElementById(id);
+  
+  if (links) {
+    if (activeLinksContainer === links) {
+      links.style.display = "none"; 
+      button.classList.remove("sub-btn_arr-d_active"); 
+      activeLinksContainer = null; 
+      activeLinkButton = null; 
+      return; 
+    }
+
+    if (activeLinksContainer) {
+      activeLinksContainer.style.display = "none"; 
+      activeLinkButton.classList.remove("sub-btn_arr-d_active"); 
+    }
+
+    links.style.display = "grid"; 
+    button.classList.add("sub-btn_arr-d_active"); 
+    
+    activeLinksContainer = links; 
+    activeLinkButton = button; 
+  }
+}
+
+
+
