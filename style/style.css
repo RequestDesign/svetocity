@@ -15,6 +15,7 @@ html {
   line-height: 1.2;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -161,7 +162,10 @@ main {
 .text-16-color {
   color: rgba(82, 82, 82, 1);
 }
-
+.txt-64-20 {
+  font-weight: 700;
+  font-size: 6.4rem;
+}
 .h1 {
   font-size: 4.6rem;
   font-weight: 600;
@@ -982,7 +986,7 @@ header {
   .brands-content_main {
     align-items: center;
   }
-  .brands-content_bottom{
+  .brands-content_bottom {
     display: none !important;
   }
   .brands-content {
@@ -2476,7 +2480,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   border: 1px solid rgba(108, 183, 94, 1);
   border-radius: 3rem;
 }
-.btn-white_reg:hover{
+.btn-white_reg:hover {
   background-color: rgba(254, 188, 75, 0.7);
   border-color: rgba(254, 188, 75, 0.7);
   /* color: white; */
@@ -2485,23 +2489,23 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   width: 100%;
   text-transform: uppercase;
 }
-#authModal .h1{
+#authModal .h1 {
   text-align: center;
   margin-bottom: 1rem;
   height: fit-content;
 }
-@media (max-width:48em) {
-  .modal-content_authForm{
+@media (max-width: 48em) {
+  .modal-content_authForm {
     width: 59rem;
     height: 62rem;
   }
-  .password-container{
+  .password-container {
     width: 59rem;
     height: 8rem;
     border-radius: 2rem;
   }
-  
-  .btn-white_reg{
+
+  .btn-white_reg {
     width: 100%;
     height: 100%;
     align-items: center;
@@ -2513,44 +2517,174 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   }
 }
 /* registration-form */
-.registration-content_main{
+.registration-content_main {
   width: 85rem;
 }
-.registration-content_main-form{
+.registration-content_main-form {
   display: grid;
   gap: 3rem;
 }
-.registration-form_inputs{
+.registration-form_inputs {
   display: grid;
   gap: 1rem;
 }
-.registration-form_inputs-block{
+.registration-form_inputs-block {
   display: grid;
   gap: 2rem;
 }
-.registration-content_main-form .btn-green{
+.registration-content_main-form .btn-green {
   width: 100%;
 }
-#eyeOpen, #eyeClosed{
+#eyeOpen,
+#eyeClosed {
   width: 2.8rem;
   height: 2.8rem;
 }
 
-@media (max-width:48em) {
-  .registration-content_main{
+@media (max-width: 48em) {
+  .registration-content_main {
     width: 67rem;
   }
-  .registration-content_main-form .password-container{
+  .registration-content_main-form .password-container {
     width: 67rem;
   }
-  #eyeOpen, #eyeClosed{
+  #eyeOpen,
+  #eyeClosed {
     width: 5.6rem;
     height: 5.6rem;
   }
-  .registration-form_inputs{
+  .registration-form_inputs {
     gap: 2rem;
   }
-  .registration-content_main-form{
+  .registration-content_main-form {
     gap: 4rem;
+  }
+}
+/* brands */
+.main-brands_content {
+  display: grid;
+  gap: 10rem;
+}
+.brands_content-top {
+  display: grid;
+  gap: 8rem;
+}
+.brands_content-top .h1 {
+  text-align: center;
+}
+.main-brands_content .search {
+  padding-right: 1rem;
+}
+.brands_content-main {
+  display: grid;
+  gap: 4.5rem;
+}
+.brands_content-main_block {
+  display: flex;
+  align-items: center;
+  gap: 4.5rem;
+}
+.brands-items {
+  height: 3.2rem;
+  display: flex;
+  gap: 2.9rem;
+}
+.brands-items a{
+  text-transform: uppercase;
+}
+.brands-items a:hover{
+  color: rgba(49, 49, 49, 1);
+}
+.btn-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14rem;
+  height: 5.4rem;
+  border-radius: 3rem;
+  background: rgba(108, 183, 94, 1);
+  color: white;
+}
+.brands_content-bottom {
+  display: grid;
+  gap: 25rem;
+}
+.brands-bottom_block-number {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16.5rem;
+  justify-content: space-between;
+}
+.brands_content-bottom_block {
+  display: flex;
+  justify-content: space-between;
+}
+.brands_content-bottom_item {
+  display: grid;
+  gap: 5rem;
+  width: 15rem;
+  height: auto;
+}
+.brands-bottom_item-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(108, 183, 94, 1);
+  width: 14.7rem;
+  height: 14.7rem;
+  border-radius: 7.3rem;
+  background: rgba(234, 243, 234, 1);
+}
+.brands-bottom_item-content {
+  display: grid;
+  gap: 2rem;
+}
+.brands-bottom_item-block {
+  text-transform: uppercase;
+}
+@media (max-width: 48em) {
+  .brands_content-main {
+    display: none;
+  }
+  .brands_content-top .h1 {
+    text-align: left;
+  }
+  .main-brands_content .search {
+    width: 67rem;
+    justify-content: space-between;
+  }
+  .main-brands_content .search .search-input {
+    display: flex;
+  }
+  .main-brands_content .camera-block {
+    display: flex;
+    width: 4.6rem;
+    height: 4.6rem;
+  }
+  .main-brands_content .camera-block .camera-svg{
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+  .brands_content-bottom_item{
+    width: 14.4rem;
+  }
+  .brands_content-bottom_block{
+    flex-wrap: wrap;
+    gap: 6rem;
+  }
+  .brands-bottom_item-block{
+    width: 9rem;
+    height: 9rem;
+  }
+  .brands-bottom_block-number{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6rem;
+  }
+  .txt-64-20{
+    font-size: 4.0rem;
+  }
+  .brands_content-bottom{
+    gap: 14rem;
   }
 }
