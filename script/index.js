@@ -321,13 +321,14 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
+
   const designModal = document.getElementById("designModal");
   const authModal = document.getElementById("authModal");
   const openDesignModalBtn = document.getElementById("openDesignModal");
   const openAuthModalBtn = document.getElementById("openAuthModal");
   const closeDesignModalBtn = document.getElementById("closeDesignModal");
   const closeAuthModalBtn = document.getElementById("closeAuthModal");
-  
+
   function openModal(modal) {
     modal.style.display = "flex";
   }
@@ -454,18 +455,25 @@ function toggleLinks(id, button) {
 }
 
 
-function togglePassword() {
-  const passwordInput = document.getElementById("authPassword");
-  const eyeIcon = document.querySelector(".toggle-password svg");
+function togglePassword(event) {
+  const button = event.currentTarget;
+  const passwordInput = button.previousElementSibling;
+  const eyeIcon = button.querySelector("svg");
 
   if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      eyeIcon.innerHTML = `<path fill-rule="evenodd" clip-rule="evenodd" d="M4.8318 14.7617C6.37558 18.295 9.90088 20.7617 14 20.7617C18.0991 20.7617 21.6244 18.295 23.1682 14.7618C21.6244 11.2285 18.0991 8.76172 14 8.76172C9.90087 8.76172 6.37561 11.2284 4.8318 14.7617ZM24.2501 14.7618C22.65 10.6644 18.664 7.76172 14 7.76172C9.33603 7.76172 5.35004 10.6643 3.74988 14.7616C5.35 18.859 9.33603 21.7617 14 21.7617C18.664 21.7617 22.65 18.8591 24.2501 14.7618Z" fill="#8E8E93" />
-                          <path  fill-rule="evenodd"  clip-rule="evenodd"  d="M14 17.7617C15.6569 17.7617 17 16.4186 17 14.7617C17 13.1049 15.6569 11.7617 14 11.7617C12.3431 11.7617 11 13.1049 11 14.7617C11 16.4186 12.3431 17.7617 14 17.7617ZM14 18.7617C16.2091 18.7617 18 16.9709 18 14.7617C18 12.5526 16.2091 10.7617 14 10.7617C11.7909 10.7617 10 12.5526 10 14.7617C10 16.9709 11.7909 18.7617 14 18.7617Z"  fill="#8E8E93"/>`;
+    passwordInput.type = "text";
+    eyeIcon.innerHTML = `<path fill-rule="evenodd" clip-rule="evenodd" d="M4.8318 14.7617C6.37558 18.295 9.90088 20.7617 14 20.7617C18.0991 20.7617 21.6244 18.295 23.1682 14.7618C21.6244 11.2285 18.0991 8.76172 14 8.76172C9.90087 8.76172 6.37561 11.2284 4.8318 14.7617ZM24.2501 14.7618C22.65 10.6644 18.664 7.76172 14 7.76172C9.33603 7.76172 5.35004 10.6643 3.74988 14.7616C5.35 18.859 9.33603 21.7617 14 21.7617C18.664 21.7617 22.65 18.8591 24.2501 14.7618Z" fill="#8E8E93" />
+                      <path  fill-rule="evenodd"  clip-rule="evenodd"  d="M14 17.7617C15.6569 17.7617 17 16.4186 17 14.7617C17 13.1049 15.6569 11.7617 14 11.7617C12.3431 11.7617 11 13.1049 11 14.7617C11 16.4186 12.3431 17.7617 14 17.7617ZM14 18.7617C16.2091 18.7617 18 16.9709 18 14.7617C18 12.5526 16.2091 10.7617 14 10.7617C11.7909 10.7617 10 12.5526 10 14.7617C10 16.9709 11.7909 18.7617 14 18.7617Z"  fill="#8E8E93"/>`;
   } else {
-      passwordInput.type = "password";
-      eyeIcon.innerHTML = `<path d="M5.46094 12C5.46094 12 8.69168 15.9037 14.2301 15.7894C19.7685 15.6751 22.5377 12 22.5377 12" stroke="#8E8E93" stroke-linecap="round"/>
-                          <path  fill-rule="evenodd"  clip-rule="evenodd"  d="M5.07022 17.2512L7.37789 13.8828L8.16065 14.3291L5.85298 17.6975C5.71788 17.8947 5.43314 17.9547 5.21698 17.8314C5.00083 17.7082 4.93512 17.4484 5.07022 17.2512Z"  fill="#8E8E93" />
-                          <path fill-rule="evenodd" clip-rule="evenodd" d="M22.9298 17.2512L20.6221 13.8828L19.8393 14.3291L22.147 17.6975C22.2821 17.8947 22.5669 17.9547 22.783 17.8314C22.9992 17.7082 23.0649 17.4484 22.9298 17.2512Z" fill="#8E8E93"/>`;
+    passwordInput.type = "password";
+    eyeIcon.innerHTML = `<path d="M5.46094 12C5.46094 12 8.69168 15.9037 14.2301 15.7894C19.7685 15.6751 22.5377 12 22.5377 12" stroke="#8E8E93" stroke-linecap="round"/>
+                      <path  fill-rule="evenodd"  clip-rule="evenodd"  d="M5.07022 17.2512L7.37789 13.8828L8.16065 14.3291L5.85298 17.6975C5.71788 17.8947 5.43314 17.9547 5.21698 17.8314C5.00083 17.7082 4.93512 17.4484 5.07022 17.2512Z"  fill="#8E8E93" />
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M22.9298 17.2512L20.6221 13.8828L19.8393 14.3291L22.147 17.6975C22.2821 17.8947 22.5669 17.9547 22.783 17.8314C22.9992 17.7082 23.0649 17.4484 22.9298 17.2512Z" fill="#8E8E93"/>`;
   }
 }
+
+// Назначаем обработчики событий для всех кнопок с классом .toggle-password
+document.querySelectorAll(".toggle-password").forEach(button => {
+  button.addEventListener("click", togglePassword);
+});
+

@@ -2442,7 +2442,6 @@ footer {
   width: 100%;
   border: none;
   outline: none;
-  color: rgba(183, 180, 180, 1);
 }
 .toggle-password {
   background: none;
@@ -2511,5 +2510,47 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     border: 1px solid rgba(108, 183, 94, 1);
     padding: 1.5rem 0;
     border-radius: 3rem;
+  }
+}
+/* registration-form */
+.registration-content_main{
+  width: 85rem;
+}
+.registration-content_main-form{
+  display: grid;
+  gap: 3rem;
+}
+.registration-form_inputs{
+  display: grid;
+  gap: 1rem;
+}
+.registration-form_inputs-block{
+  display: grid;
+  gap: 2rem;
+}
+.registration-content_main-form .btn-green{
+  width: 100%;
+}
+#eyeOpen, #eyeClosed{
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+@media (max-width:48em) {
+  .registration-content_main{
+    width: 67rem;
+  }
+  .registration-content_main-form .password-container{
+    width: 67rem;
+  }
+  #eyeOpen, #eyeClosed{
+    width: 5.6rem;
+    height: 5.6rem;
+  }
+  .registration-form_inputs{
+    gap: 2rem;
+  }
+  .registration-content_main-form{
+    gap: 4rem;
   }
 }
