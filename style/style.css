@@ -366,7 +366,7 @@ header {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border: 1px solid rgba(93, 175, 76, 0.9);
+  border: 1px solid rgba(230, 230, 230, 1);
   border-radius: 3rem;
   padding: 1.6rem 2rem;
 }
@@ -391,7 +391,7 @@ header {
   color: rgba(26, 26, 26, 1);
   transition: border 0.4s ease-in-out;
 }
-.btn-light_active{
+.btn-light_active {
   border: 1px solid rgba(93, 175, 76, 0.9);
 }
 .btn-light span {
@@ -579,7 +579,7 @@ header {
     border-radius: 4rem;
     order: 2;
   }
-  .btn-catalog_active{
+  .btn-catalog_active {
     border: 1px solid rgba(93, 175, 76, 0.9);
   }
   .btn-light {
@@ -588,7 +588,7 @@ header {
     justify-content: center;
     border-radius: 4rem;
   }
-  
+
   .header-content_main-block {
     display: flex;
     align-items: flex-end;
@@ -2227,12 +2227,14 @@ footer {
   position: absolute;
   left: 0px;
   top: 16.7rem;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 12px 12px rgba(255, 255, 255, .7);
   backdrop-filter: blur(5px);
   width: 172rem;
   height: 172rem;
   z-index: 4;
 }
+
 .catalog-menu_block {
   position: relative;
   display: grid;
@@ -2257,7 +2259,7 @@ footer {
   height: auto;
   text-align: center;
   position: relative;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
 }
 .category-btn_active {
   background: #6cb75e;
@@ -2268,7 +2270,6 @@ footer {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 }
-
 .sub-menu {
   display: none;
   justify-content: space-between;
@@ -2282,7 +2283,7 @@ footer {
   border: 1px solid rgba(93, 175, 76, 0.9);
   border-radius: 3rem;
 }
-.sub-menu_block{
+.sub-menu_block {
   display: grid;
   gap: 1.5rem;
   /* justify-content: space-between; */
@@ -2291,10 +2292,10 @@ footer {
 .sub-menu .txt-20 {
   text-align: left;
   display: block;
-  cursor:auto;
+  cursor: auto;
   font-weight: 500;
 }
-.chandeliers-types{
+.chandeliers-types {
   display: grid;
 }
 .sub-menu a {
@@ -2311,10 +2312,11 @@ footer {
   display: grid;
   gap: 1rem;
 }
-.links a:hover{
+.links a:hover {
   color: rgba(26, 26, 26, 1);
 }
-.category-btn_arr-d,.menu-btn_arr-d{
+.category-btn_arr-d,
+.menu-btn_arr-d {
   display: none;
 }
 @media (max-width: 48em) {
@@ -2328,19 +2330,19 @@ footer {
     background: white;
     padding-bottom: 20rem;
   }
-  .catalog-menu_block{
+  .catalog-menu_block {
     width: 67rem;
     border: none;
-    box-shadow:none;
+    box-shadow: none;
     padding: 0;
   }
 
-  .category-container{
+  .category-container {
     width: 67rem;
     border: 1px solid rgba(93, 175, 76, 0.9);
     border-radius: 2rem;
   }
-  .category-container .category-btn{
+  .category-container .category-btn {
     justify-content: center;
     height: 9.8rem;
     gap: 2rem;
@@ -2350,46 +2352,67 @@ footer {
     width: 100%;
     display: none;
     border: none;
-    box-shadow:none;
+    box-shadow: none;
     gap: 6rem;
   }
   .links {
     width: 100%;
     display: none;
   }
-  .category-btn_arr-d,.menu-btn_arr-d{
+  .category-btn_arr-d,
+  .menu-btn_arr-d {
     display: flex;
     width: 4.8rem;
     height: 4.8rem;
     transition: transform 0.3s ease;
   }
   .category-btn_active {
-    .category-btn_arr-d{
+    .category-btn_arr-d {
       transform: rotate(180deg);
     }
     .category-btn_arr-d path {
       stroke: white;
     }
   }
-  .sub-menu .txt-20{
+  .sub-menu .txt-20 {
     font-weight: 600;
-    font-size: 4.0rem;
+    font-size: 4rem;
   }
-  .sub-menu_block .txt-18{
+  .sub-menu_block .txt-18 {
     font-size: 3.6rem;
   }
-  .sub-menu_block .txt-20{
+  .sub-menu_block .txt-20 {
     display: flex;
     align-items: center;
     gap: 2rem;
   }
-  .sub-btn_arr-d_active{
-    .menu-btn_arr-d{
+  .sub-btn_arr-d_active {
+    .menu-btn_arr-d {
       transform: rotate(180deg);
     }
   }
 }
 
+/* favourites */
+.favourites-content_main {
+  display: flex;
+  gap: 2.53rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.favourites-content_bottom {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width:48em) {
+  .favourites-content_main{
+    justify-content: space-between;
+  }
+  .favourites-content_bottom .btn-green{
+    display: flex !important;
+    width: 100%;
+  }
+}
 /* .btn-catalog svg {
   margin-left: 5px;
   transition: transform 0.3s ease;
