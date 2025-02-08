@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет/ Регистрация</title>
+    <title>Личный кабинет/ Личный кабинет</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=5f2fb3bc-4f36-4af2-b420-52b267e41a89" type="text/javascript"></script>
     <link rel="stylesheet" href="style/style.css" />
@@ -1443,8 +1443,77 @@
         <section class="main-block">
             <div class="container">
                 <div class="shopping-content">
-                    <div class="shopping-content_top h1">Добро пожаловать в личный кабинет!</div>
-                   
+                    <div class="personal-content_top h1">Добро пожаловать в личный кабинет!
+                        <button class="btn-green txt-regul-16" id="saveChangesBtn" style="display: none;">
+                            Сохранить изменения
+                        </button>
+                    </div>
+
+                   <div class="personal-content_main">
+                    <div class="profile">
+                        <div class="h2">Профиль</div>
+                        <div class="profile-content">
+                            <div class="profile-item">
+                                <label class="txt-dark-op txt-regul-16">E-mail:</label>
+                                <input class="txt-regul-16" type="email" value="abcd@mail.ru" readonly>
+                                <button class="edit-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="22" viewBox="0 0 21 22" fill="none">
+                                        <path d="M4.375 14.5L3.5 18L7 17.125L17.1376 6.98744C17.821 6.30402 17.821 5.19598 17.1376 4.51256L16.9874 4.36244C16.304 3.67902 15.196 3.67902 14.5126 4.36244L4.375 14.5Z" stroke="#6CB75E" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.125 5.75L15.75 8.375" stroke="#6CB75E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="profile-item">
+                                <label class="txt-dark-op txt-regul-16">Имя:</label>
+                                <input class="txt-regul-16" type="text" value="Александра" readonly>
+                                <button class="edit-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="22" viewBox="0 0 21 22" fill="none">
+                                        <path d="M4.375 14.5L3.5 18L7 17.125L17.1376 6.98744C17.821 6.30402 17.821 5.19598 17.1376 4.51256L16.9874 4.36244C16.304 3.67902 15.196 3.67902 14.5126 4.36244L4.375 14.5Z" stroke="#6CB75E" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.125 5.75L15.75 8.375" stroke="#6CB75E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="profile-item">
+                                <label class="txt-dark-op txt-regul-16">Фамилия:</label>
+                                <input class="txt-regul-16" type="text" value="Зверева" readonly>
+                                <button class="edit-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="22" viewBox="0 0 21 22" fill="none">
+                                        <path d="M4.375 14.5L3.5 18L7 17.125L17.1376 6.98744C17.821 6.30402 17.821 5.19598 17.1376 4.51256L16.9874 4.36244C16.304 3.67902 15.196 3.67902 14.5126 4.36244L4.375 14.5Z" stroke="#6CB75E" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.125 5.75L15.75 8.375" stroke="#6CB75E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="profile-item">
+                                <label class="txt-dark-op txt-regul-16">Номер телефона:</label>
+                                <input class="txt-regul-16" type="tel" value="+7925111221" readonly>
+                                <button class="edit-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="22" viewBox="0 0 21 22" fill="none">
+                                        <path d="M4.375 14.5L3.5 18L7 17.125L17.1376 6.98744C17.821 6.30402 17.821 5.19598 17.1376 4.51256L16.9874 4.36244C16.304 3.67902 15.196 3.67902 14.5126 4.36244L4.375 14.5Z" stroke="#6CB75E" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.125 5.75L15.75 8.375" stroke="#6CB75E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="profile-item">
+                                <label class="txt-dark-op txt-regul-16">Адрес доставки:</label>
+                                <input class="txt-regul-16" type="text" value="г Москва ул Ляпунова 2к1 кв 33" readonly>
+                                <button class="edit-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="22" viewBox="0 0 21 22" fill="none">
+                                        <path d="M4.375 14.5L3.5 18L7 17.125L17.1376 6.98744C17.821 6.30402 17.821 5.19598 17.1376 4.51256L16.9874 4.36244C16.304 3.67902 15.196 3.67902 14.5126 4.36244L4.375 14.5Z" stroke="#6CB75E" stroke-width="0.875" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.125 5.75L15.75 8.375" stroke="#6CB75E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="orders">
+                        <div class="h2">Заказы</div>
+                        <div class="orders-content">
+                            <p class="txt-main">У вас пока нет заказов.</p>
+                        </div>
+                        
+                    </div>
+                   </div>
                 </div>
             </div>
         </section>

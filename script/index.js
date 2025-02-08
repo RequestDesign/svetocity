@@ -322,6 +322,39 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+  let profileBlock = document.querySelector(".profile-item");
+  if (profileBlock) {
+    document.querySelectorAll(".edit-btn").forEach((button) => {
+      button.addEventListener("click", function () {
+        let input = this.previousElementSibling; 
+        input.readOnly = false; 
+        input.focus(); 
+        document.getElementById("saveChangesBtn").style.display = "flex";
+      });
+    });
+
+    document
+      .getElementById("saveChangesBtn")
+      .addEventListener("click", function () {
+        document.querySelectorAll(".profile-item input").forEach((input) => {
+          input.readOnly = true; 
+        });
+        this.style.display = "none";
+      });
+    document.addEventListener("click", function (event) {
+      let isInsideProfile = event.target.closest(".profile-item");
+      let isSaveButton = event.target.closest("#saveChangesBtn");
+
+      if (!isInsideProfile && !isSaveButton) {
+        document.querySelectorAll(".profile-item input").forEach((input) => {
+          input.readOnly = true; 
+        });
+      }
+    });
+  }
+
+
+
   const designModal = document.getElementById("designModal");
   const authModal = document.getElementById("authModal");
   const openDesignModalBtn = document.getElementById("openDesignModal");
@@ -454,7 +487,6 @@ function toggleLinks(id, button) {
   }
 }
 
-
 function togglePassword(event) {
   const button = event.currentTarget;
   const passwordInput = button.previousElementSibling;
@@ -472,8 +504,6 @@ function togglePassword(event) {
   }
 }
 
-// Назначаем обработчики событий для всех кнопок с классом .toggle-password
-document.querySelectorAll(".toggle-password").forEach(button => {
+document.querySelectorAll(".toggle-password").forEach((button) => {
   button.addEventListener("click", togglePassword);
 });
-

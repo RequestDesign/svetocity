@@ -2589,10 +2589,10 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   display: flex;
   gap: 2.9rem;
 }
-.brands-items a{
+.brands-items a {
   text-transform: uppercase;
 }
-.brands-items a:hover{
+.brands-items a:hover {
   color: rgba(49, 49, 49, 1);
 }
 .btn-all {
@@ -2661,30 +2661,153 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     width: 4.6rem;
     height: 4.6rem;
   }
-  .main-brands_content .camera-block .camera-svg{
+  .main-brands_content .camera-block .camera-svg {
     width: 2.6rem;
     height: 2.6rem;
   }
-  .brands_content-bottom_item{
+  .brands_content-bottom_item {
     width: 14.4rem;
   }
-  .brands_content-bottom_block{
+  .brands_content-bottom_block {
     flex-wrap: wrap;
     gap: 6rem;
   }
-  .brands-bottom_item-block{
+  .brands-bottom_item-block {
     width: 9rem;
     height: 9rem;
   }
-  .brands-bottom_block-number{
+  .brands-bottom_block-number {
     display: flex;
     flex-wrap: wrap;
     gap: 6rem;
   }
-  .txt-64-20{
-    font-size: 4.0rem;
+  .txt-64-20 {
+    font-size: 4rem;
   }
-  .brands_content-bottom{
+  .brands_content-bottom {
     gap: 14rem;
+  }
+}
+
+/* profial */
+.personal-content_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5.4rem;
+}
+.personal-content_main {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.profile,
+.orders {
+  display: grid;
+  gap: 3rem;
+  background: white;
+  padding: 1.6rem 1.6rem 2.1rem 1.6rem;
+  border: 1px solid rgba(108, 183, 94, 1);
+  border-radius: 2rem;
+  width: 50%;
+  height: 38rem;
+}
+.orders .h2 {
+  height: fit-content;
+}
+.profile-content {
+  display: grid;
+  gap: 1.9rem;
+}
+.orders-content {
+  display: grid;
+  gap: 2.8rem;
+  height: 28rem;
+}
+.profile-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgba(108, 183, 94, 1);
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 4.1rem;
+}
+.profile-item input {
+  flex: 2;
+  border: none;
+  background: transparent;
+  /* font-size: 16px; */
+  /* padding: 5px; */
+  cursor: default;
+}
+
+/* .profile-item input:focus {
+  border-bottom: 1px solid #90ee90;
+  outline: none;
+  cursor: text; 
+} */
+.edit-btn {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 2.7rem;
+  height: 3.1rem;
+}
+.edit-btn svg {
+  width: 2.7rem;
+  height: 3.1rem;
+}
+@media (max-width: 48em) {
+  .shopping-content {
+    gap: 4rem;
+  }
+  .personal-content_top {
+    height: auto;
+    display: grid;
+    gap: 2rem;
+  }
+  .personal-content_main {
+    display: grid;
+    gap: 4rem;
+    width: 67rem;
+  }
+  .profile,
+  .orders {
+    gap: 4rem;
+    width: 67rem;
+    height: 74.8rem;
+    padding: 3.2rem;
+    border-radius: 4rem;
+  }
+  .profile-item {
+    height: fit-content;
+    border-radius: 2rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+    width: 60rem;
+  }
+  .edit-btn {
+    top: 2rem;
+    right: 2rem;
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+  .edit-btn svg {
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+  .profile-item label {
+    white-space: nowrap;
+  }
+  .profile-item input {
+    flex: 1;
+  }
+  .orders-content{
+    height: 58rem;
+    width: 55.4rem;
   }
 }
