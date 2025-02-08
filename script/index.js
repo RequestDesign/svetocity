@@ -321,14 +321,49 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
+  
+  document.querySelectorAll(".order-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", function () {
+      const orderItem = this.closest(".orders-content_item");
+      const productsContainer = orderItem.querySelector(
+        ".orders-content_item-block_tet"
+      );
+      const parentOrders = document.querySelector(".orders-content");
+
+      if (productsContainer) {
+        orderItem.classList.toggle("expanded");
+
+        if (orderItem.classList.contains("expanded")) {
+          productsContainer.style.maxHeight =
+            productsContainer.scrollHeight + "px"; 
+        } else {
+          productsContainer.style.maxHeight = "4.1rem";
+        }
+      }
+
+      let anyExpanded = document.querySelector(".orders-content_item.expanded");
+
+      if (anyExpanded) {
+        parentOrders.classList.add("expanded"); 
+        
+      } else {
+        parentOrders.classList.remove("expanded");
+        
+      }
+    });
+  });
+
+
+
+  
 
   let profileBlock = document.querySelector(".profile-item");
   if (profileBlock) {
     document.querySelectorAll(".edit-btn").forEach((button) => {
       button.addEventListener("click", function () {
-        let input = this.previousElementSibling; 
-        input.readOnly = false; 
-        input.focus(); 
+        let input = this.previousElementSibling;
+        input.readOnly = false;
+        input.focus();
         document.getElementById("saveChangesBtn").style.display = "flex";
       });
     });
@@ -337,7 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .getElementById("saveChangesBtn")
       .addEventListener("click", function () {
         document.querySelectorAll(".profile-item input").forEach((input) => {
-          input.readOnly = true; 
+          input.readOnly = true;
         });
         this.style.display = "none";
       });
@@ -347,13 +382,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!isInsideProfile && !isSaveButton) {
         document.querySelectorAll(".profile-item input").forEach((input) => {
-          input.readOnly = true; 
+          input.readOnly = true;
         });
       }
     });
   }
-
-
 
   const designModal = document.getElementById("designModal");
   const authModal = document.getElementById("authModal");
@@ -363,30 +396,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeAuthModalBtn = document.getElementById("closeAuthModal");
 
   function openModal(modal) {
-    modal.style.display = "flex";
+    if (modal) {
+      modal.style.display = "flex";
+    }
   }
+
   function closeModal(modal) {
-    modal.style.display = "none";
+    if (modal) {
+      modal.style.display = "none";
+    }
   }
-  openDesignModalBtn.addEventListener("click", function () {
-    openModal(designModal);
-  });
 
-  openAuthModalBtn.addEventListener("click", function () {
-    openModal(authModal);
-  });
-  closeDesignModalBtn.addEventListener("click", function () {
-    closeModal(designModal);
-  });
+  if (openDesignModalBtn) {
+    openDesignModalBtn.addEventListener("click", function () {
+      openModal(designModal);
+    });
+  }
 
-  closeAuthModalBtn.addEventListener("click", function () {
-    closeModal(authModal);
-  });
+  if (openAuthModalBtn) {
+    openAuthModalBtn.addEventListener("click", function () {
+      openModal(authModal);
+    });
+  }
+
+  if (closeDesignModalBtn) {
+    closeDesignModalBtn.addEventListener("click", function () {
+      closeModal(designModal);
+    });
+  }
+
+  if (closeAuthModalBtn) {
+    closeAuthModalBtn.addEventListener("click", function () {
+      closeModal(authModal);
+    });
+  }
+
   window.addEventListener("click", function (event) {
-    if (event.target === designModal) {
+    if (designModal && event.target === designModal) {
       closeModal(designModal);
     }
-    if (event.target === authModal) {
+    if (authModal && event.target === authModal) {
       closeModal(authModal);
     }
   });
