@@ -3189,7 +3189,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 }
 .backet-checkout_content-main_right .backet-content_main-products {
   width: 85rem;
-  height: 73.5rem;
+  height: 62.5rem;
   gap: 1rem;
 }
 .backet-checkout_content-main_right .backet-content_main-product {
@@ -3309,6 +3309,9 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   }
   .backet-checkout_content-main_right .backet-content_main-products {
     height: 85.3rem;
+  }
+  .backet-checkout_main-left_block{
+    gap: 4rem;
   }
 }
 .dropdown {
