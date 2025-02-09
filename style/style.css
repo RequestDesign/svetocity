@@ -1067,7 +1067,7 @@ header {
     order: 2;
   }
   .btn-green {
-    height: 9.0rem;
+    height: 9rem;
     border-radius: 50rem;
   }
 }
@@ -2241,7 +2241,11 @@ footer {
   width: 172rem;
   height: 172rem;
   z-index: 4;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 80%);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0) 80%
+  );
 }
 
 .catalog-menu_block {
@@ -3125,7 +3129,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     border: none;
     width: auto;
   }
-  .backet-product_block-top{
+  .backet-product_block-top {
     display: grid;
   }
   .backet-product_block-bottom .col {
@@ -3138,17 +3142,21 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     padding: 2rem;
     align-items: flex-start;
   }
-  .backet-product_top-block_art{
+  .backet-product_top-block_art {
     display: grid;
   }
-  .backet-product_top-block{
+  .backet-product_top-block {
     display: grid;
   }
-  .backet-product_block ,.backet-product_block-top,.backet-product_top-block,.backet-product_top-block_art{
-    width: 40rem !important;
+  .backet-product_block,
+  .backet-product_block-top,
+  .backet-product_top-block,
+  .backet-product_top-block_art {
+    width: 40rem;
     gap: 1rem;
   }
-  .backet-content .orders-content_item-block, .orders-content_item-block_tet{
+  .backet-content .orders-content_item-block,
+  .orders-content_item-block_tet {
     width: 100%;
   }
   /* Стили для красивого скролла */
@@ -3157,11 +3165,208 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     border: 1px solid rgba(108, 183, 94, 1);
     border-radius: 10px;
   }
-  .backet-content_bottom-block{
+  .backet-content_bottom-block {
     gap: 4rem;
     padding-top: 3rem;
   }
-  .backet-content_bottom-block .btn-green{
+  .backet-content_bottom-block .btn-green {
     width: 100%;
+  }
+}
+/* backet-checkout */
+.backet-checkout_content-main {
+  display: flex;
+  gap: 2rem;
+}
+.backet-checkout_content-main_left {
+  width: 50%;
+  display: grid;
+  gap: 3rem;
+  height: fit-content;
+}
+.backet-checkout_content-main_right {
+  width: 50%;
+}
+.backet-checkout_content-main_right .backet-content_main-products {
+  width: 85rem;
+  height: 73.5rem;
+  gap: 1rem;
+}
+.backet-checkout_content-main_right .backet-content_main-product {
+  width: 82rem;
+  padding: 3rem 2rem;
+  align-items: flex-start;
+  height: 20rem;
+}
+.backet-checkout_content-main_right .backet-product_block {
+  /* width: 72rem; */
+}
+.backet-checkout_content-main_right .backet-product_top-block {
+  display: grid;
+  gap: 1rem;
+}
+.backet-checkout_content-main_right .backet-product_top-block_art {
+  display: grid;
+  gap: 1rem;
+}
+.backet-checkout_content-main_right .backet-product_block-top {
+  align-items: start;
+}
+/* backet-checkout */
+.backet-checkout_main-left_block {
+  display: grid;
+  gap: 2rem;
+  height: fit-content;
+}
+.backet-checkout_content-main .grid {
+  gap: 1rem;
+}
+.checkout_block-inputs {
+  display: flex;
+  justify-content: space-between;
+}
+.checkout_block-inputs .password-container {
+  width: 41.5rem;
+}
+.backet-checkout_content-main .password-container {
+  height: 4.2rem;
+}
+
+.backet-title_block {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+}
+.backet-title_block-as {
+  display: flex;
+  align-items: center;
+  gap: 4.1rem;
+}
+.btn-entrance {
+  font-weight: 500;
+  border-bottom: 1px solid rgba(26, 26, 26, 1);
+  border-radius: 0;
+  transition: border-bottom 0.3s ease, color 0.1s ease;
+}
+.btn-entrance:hover {
+  border-bottom: 1px solid rgb(96, 96, 96);
+  color: rgb(96, 96, 96);
+}
+@media (max-width: 48em) {
+  .backet-checkout_content-main {
+    display: grid;
+    gap: 4rem;
+  }
+  .backet-checkout_content-main_left {
+    order: 2;
+  }
+  .backet-title_block {
+    display: grid;
+    gap: 4rem;
+  }
+  .backet-title_block-as {
+    display: grid;
+    gap: 2rem;
+  }
+  .btn-entrance {
+    width: fit-content;
+  }
+  .checkout_block-inputs {
+    display: grid;
+    gap: 3rem;
+  }
+  .backet-checkout_content-main_right .backet-content_main-products {
+    width: 67rem;
+  }
+  .checkout_block-inputs .password-container,
+  .backet-checkout_content-main .password-container {
+    width: 67rem;
+    height: 8.4rem;
+  }
+  .backet-checkout_content-main .grid {
+    gap: 3rem;
+  }
+  .backet-checkout_content-main_right .backet-content_main-product {
+    width: 64rem;
+    height: fit-content;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+  }
+  .backet-checkout_content-main_right .backet-product_top-block {
+    width: 100%;
+  }
+  .backet-checkout_content-main_right .backet-product_block {
+    width: 100%;
+  }
+  .backet-checkout_content-main_right .backet-product_block-top {
+    width: 100%;
+  }
+  .backet-checkout_content-main_right .backet-content_main-products {
+    gap: 3rem;
+  }
+  .backet-checkout_content-main_right .backet-content_main-products {
+    height: 85.3rem;
+  }
+}
+.dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 4.2rem;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  background: white;
+  border: 1px solid rgba(108, 183, 94, 1);
+  border-radius: 1rem;
+}
+
+.dropdown-selected svg {
+  width: 2.4rem;
+  height: 2.4rem;
+  transition: transform 0.3s ease;
+}
+.dropdown-list {
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  border-radius: 0.5rem;
+  display: none;
+}
+.dropdown-list div {
+  padding: 10px;
+  cursor: pointer;
+}
+.dropdown-list div:hover {
+  background: #f0f0f0;
+}
+/* При открытии dropdown */
+.dropdown.open .dropdown-list {
+  display: block;
+}
+.dropdown.open .dropdown-selected svg {
+  transform: rotate(180deg);
+}
+
+@media (max-width:48em) {
+  .dropdown-selected svg {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+  .dropdown-selected{
+    width: 67rem;
+    height: 8.4rem;
+    border-radius: 2rem;
   }
 }

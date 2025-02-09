@@ -321,6 +321,44 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
+  document.querySelectorAll(".dropdown").forEach(dropdown => {
+    const selected = dropdown.querySelector(".dropdown-selected");
+    const list = dropdown.querySelector(".dropdown-list");
+
+    if (!selected || !list) {
+        console.error("Ошибка: не найден .dropdown-selected или .dropdown-list в", dropdown);
+        return;
+    }
+
+    selected.addEventListener("click", (event) => {
+        event.stopPropagation(); // Чтобы клик не закрывал сразу dropdown
+
+        // Закрываем другие открытые dropdown
+        document.querySelectorAll(".dropdown").forEach(d => {
+            if (d !== dropdown) d.classList.remove("open");
+        });
+
+        // Открываем/закрываем текущий dropdown
+        dropdown.classList.toggle("open");
+    });
+
+    // Обрабатываем выбор элемента из списка
+    list.querySelectorAll("div").forEach(option => {
+        option.addEventListener("click", () => {
+            selected.querySelector("span").textContent = option.textContent;
+            dropdown.classList.remove("open");
+        });
+    });
+});
+
+// Закрываем dropdown при клике вне него
+document.addEventListener("click", () => {
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
+        dropdown.classList.remove("open");
+    });
+});
+
+
 
 
   document.querySelectorAll(".counter").forEach((counter) => {
@@ -329,23 +367,21 @@ document.addEventListener("DOMContentLoaded", function () {
       let count = parseInt(countElement.textContent);
 
       counter.querySelector(".increase").addEventListener("click", function () {
-        count++; 
-        countElement.textContent = count; 
+        count++;
+        countElement.textContent = count;
       });
       counter.querySelector(".decrease").addEventListener("click", function () {
         if (count > 1) {
-          count--; 
-          countElement.textContent = count; 
+          count--;
+          countElement.textContent = count;
         } else {
-          console.log("Счётчик не может быть меньше 1."); 
+          console.log("Счётчик не может быть меньше 1.");
         }
       });
     } else {
       console.log("Элемент счётчика не найден.");
     }
   });
-
-
 
   document.querySelectorAll(".order-toggle").forEach((toggle) => {
     toggle.addEventListener("click", function () {
