@@ -1066,6 +1066,10 @@ header {
   .about-content_main .txt-main {
     order: 2;
   }
+  .btn-green {
+    height: 9.0rem;
+    border-radius: 50rem;
+  }
 }
 /* footer */
 footer {
@@ -2237,6 +2241,7 @@ footer {
   width: 172rem;
   height: 172rem;
   z-index: 4;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 80%);
 }
 
 .catalog-menu_block {
@@ -2327,12 +2332,13 @@ footer {
   .catalog-menu {
     /* display: flex; */
     flex-direction: column;
-    box-shadow: none;
+    box-shadow: -34px 10px 15px rgba(255, 255, 255, 0.875);
     width: 71rem;
     height: fit-content;
     top: 25rem;
     background: white;
     padding-bottom: 20rem;
+    /* background-image: linear-gradient(to bottom, white, rgba(255, 255, 255, 0) 80%); */
   }
   .catalog-menu_block {
     width: 67rem;
@@ -2799,11 +2805,10 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   .profile-item input {
     flex: 1;
   }
-
 }
 .orders {
   background: white;
-  padding: 1.6rem 1.24rem  1.6rem 1.6rem;
+  padding: 1.6rem 1.24rem 1.6rem 1.6rem;
   border: 1px solid rgba(108, 183, 94, 1);
   border-radius: 2rem;
   width: 50%;
@@ -2813,15 +2818,14 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   display: grid;
   gap: 1.9rem;
   width: 81rem;
-  max-height: 28.5rem; 
+  max-height: 28.5rem;
   overflow-y: auto;
-  padding-right: 1rem; 
+  padding-right: 1rem;
   transition: max-height 0.5s ease;
   position: relative;
- 
 }
 .orders-content.expanded {
-  max-height: 94rem; 
+  max-height: 94rem;
   /* overflow: visible; */
 }
 .orders-content_item {
@@ -2830,9 +2834,9 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   border: 1px solid rgba(108, 183, 94, 1);
   padding: 1rem;
   border-radius: 1rem;
-  transition: max-height 0.5s ease; 
-  max-height: 4.1rem; 
-  overflow: hidden; 
+  transition: max-height 0.5s ease;
+  max-height: 4.1rem;
+  overflow: hidden;
 }
 .orders-content_item.expanded {
   max-height: 150rem;
@@ -2844,7 +2848,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 /* Стили для красивого скролла */
 .orders-content::-webkit-scrollbar {
   width: 1rem;
-  border: 1px solid rgba(108, 183, 94, 1) ;
+  border: 1px solid rgba(108, 183, 94, 1);
   border-radius: 10px;
 }
 .orders-content::-webkit-scrollbar-track {
@@ -2866,13 +2870,15 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   width: 2.1rem;
   height: 2.1rem;
 }
-.orders-content_item-block,.orders-content_item-block_tet {
+.orders-content_item-block,
+.orders-content_item-block_tet {
   height: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.orders-content_item-block .txt-regul-16,.orders-content_item-block_tet .txt-regul-16{
+.orders-content_item-block .txt-regul-16,
+.orders-content_item-block_tet .txt-regul-16 {
   display: flex;
   gap: 1rem;
 }
@@ -2920,7 +2926,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   width: 3rem;
 }
 @media (max-width: 48em) {
-  .orders .h2{
+  .orders .h2 {
     margin-bottom: 4rem;
   }
   /* .orders {
@@ -2937,7 +2943,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   .col {
     display: none;
   }
-  .orders-product_image{
+  .orders-product_image {
     display: none;
   }
   .orders {
@@ -2947,30 +2953,31 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     padding: 3.2rem;
     border-radius: 4rem;
   }
-  .orders-content{
+  .orders-content {
     gap: 3rem;
     width: 100%;
     max-height: 54rem;
   }
-  .orders-content_item{
+  .orders-content_item {
     gap: 3rem;
     width: 55rem;
     max-height: 8.2rem;
     padding: 2rem 2rem;
     border-radius: 2rem;
   }
-  .orders-content.expanded{
+  .orders-content.expanded {
     max-height: 52rem;
   }
-  .orders-content_item-block, .orders-content_item-block_tet{
+  .orders-content_item-block,
+  .orders-content_item-block_tet {
     width: 52rem;
   }
   .orders-content::-webkit-scrollbar {
     width: 2rem;
-    border: 1px solid rgba(108, 183, 94, 1) ;
+    border: 1px solid rgba(108, 183, 94, 1);
     border-radius: 10px;
   }
-  .orders-content_item-product{
+  .orders-content_item-product {
     border: 0;
     border-bottom: 1px solid rgba(230, 230, 230, 1);
     padding: 0;
@@ -2978,19 +2985,183 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     border-radius: 0;
     width: 51rem;
   }
-  .orders-item_block-col{
+  .orders-item_block-col {
     order: 2;
   }
-  .orders-item_title a{
+  .orders-item_title a {
     order: 1;
   }
-  .orders-item_block-col .orders-item_title{
+  .orders-item_block-col .orders-item_title {
     font-weight: 600;
   }
-  .orders-item_product-block .orders-content_item-block{
+  .orders-item_product-block .orders-content_item-block {
     order: 4;
   }
-  .orders-item_product-block .txt-regul-16{
+  .orders-item_product-block .txt-regul-16 {
     order: 3;
+  }
+}
+
+/* backet */
+.backet-content {
+  display: grid;
+  gap: 8rem;
+}
+.backet-content_main {
+  display: grid;
+  gap: 2rem;
+}
+.backet-content_main-products {
+  display: grid;
+  gap: 6rem;
+  overflow-y: auto;
+  height: 115rem;
+  width: 100%;
+  padding-right: 1.5rem;
+}
+.backet-product_block-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5rem;
+}
+.backet-product_block-bottom {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+/* Стили для красивого скролла */
+.backet-content_main-products::-webkit-scrollbar {
+  width: 1rem;
+  border: 1px solid rgba(108, 183, 94, 1);
+  border-radius: 10px;
+}
+.backet-content_main-products::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.backet-content_main-products::-webkit-scrollbar-thumb {
+  background: rgba(108, 183, 94, 1);
+  background-clip: content-box;
+  border-radius: 10px;
+}
+.backet-content_main-products::-webkit-scrollbar-thumb:hover {
+  background: rgba(78, 143, 64, 1);
+}
+.backet-content_main-product {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 24.2rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(230, 230, 230, 1);
+  padding: 5rem 3rem;
+}
+.backet-product_block {
+  display: grid;
+  gap: 4rem;
+  width: 100%;
+}
+.backet-content_top_block {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: fit-content;
+}
+.backet-content_bottom-block {
+  display: grid;
+  gap: 2rem;
+  border-top: 1px solid rgba(230, 230, 230, 1);
+  padding-top: 1rem;
+}
+.backet-amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.backet-product_image {
+  width: 15.7rem;
+  height: 14.2rem;
+}
+.btn-del {
+  width: 26rem;
+  height: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  border: 1px solid rgba(108, 183, 94, 1);
+}
+.backet-content_main .col {
+  border-radius: 2rem;
+  width: 26rem;
+}
+.backet-product_top-block {
+  display: flex;
+  gap: 11rem;
+}
+.backet-product_top-block_art {
+  display: flex;
+  gap: 5rem;
+}
+.trash {
+  display: none;
+}
+.backet-content_main .col button {
+  /* display: flex; */
+  text-align: center;
+  width: 15%;
+  font-size: 3.5rem;
+}
+@media (max-width: 48em) {
+  .trash {
+    display: flex;
+    width: 5.2rem;
+    height: 5.2rem;
+  }
+  .btn-del span {
+    display: none;
+  }
+  .btn-del {
+    border: none;
+    width: auto;
+  }
+  .backet-product_block-top{
+    display: grid;
+  }
+  .backet-product_block-bottom .col {
+    display: flex;
+    height: 5.6rem;
+  }
+  .backet-content_main-product {
+    width: 63rem;
+    height: auto;
+    padding: 2rem;
+    align-items: flex-start;
+  }
+  .backet-product_top-block_art{
+    display: grid;
+  }
+  .backet-product_top-block{
+    display: grid;
+  }
+  .backet-product_block ,.backet-product_block-top,.backet-product_top-block,.backet-product_top-block_art{
+    width: 40rem !important;
+    gap: 1rem;
+  }
+  .backet-content .orders-content_item-block, .orders-content_item-block_tet{
+    width: 100%;
+  }
+  /* Стили для красивого скролла */
+  .backet-content_main-products::-webkit-scrollbar {
+    width: 1.5rem;
+    border: 1px solid rgba(108, 183, 94, 1);
+    border-radius: 10px;
+  }
+  .backet-content_bottom-block{
+    gap: 4rem;
+    padding-top: 3rem;
+  }
+  .backet-content_bottom-block .btn-green{
+    width: 100%;
   }
 }

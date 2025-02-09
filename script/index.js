@@ -321,7 +321,32 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
-  
+
+
+  document.querySelectorAll(".counter").forEach((counter) => {
+    const countElement = counter.querySelector(".count");
+    if (countElement) {
+      let count = parseInt(countElement.textContent);
+
+      counter.querySelector(".increase").addEventListener("click", function () {
+        count++; 
+        countElement.textContent = count; 
+      });
+      counter.querySelector(".decrease").addEventListener("click", function () {
+        if (count > 1) {
+          count--; 
+          countElement.textContent = count; 
+        } else {
+          console.log("Счётчик не может быть меньше 1."); 
+        }
+      });
+    } else {
+      console.log("Элемент счётчика не найден.");
+    }
+  });
+
+
+
   document.querySelectorAll(".order-toggle").forEach((toggle) => {
     toggle.addEventListener("click", function () {
       const orderItem = this.closest(".orders-content_item");
@@ -335,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (orderItem.classList.contains("expanded")) {
           productsContainer.style.maxHeight =
-            productsContainer.scrollHeight + "px"; 
+            productsContainer.scrollHeight + "px";
         } else {
           productsContainer.style.maxHeight = "4.1rem";
         }
@@ -344,18 +369,12 @@ document.addEventListener("DOMContentLoaded", function () {
       let anyExpanded = document.querySelector(".orders-content_item.expanded");
 
       if (anyExpanded) {
-        parentOrders.classList.add("expanded"); 
-        
+        parentOrders.classList.add("expanded");
       } else {
         parentOrders.classList.remove("expanded");
-        
       }
     });
   });
-
-
-
-  
 
   let profileBlock = document.querySelector(".profile-item");
   if (profileBlock) {
