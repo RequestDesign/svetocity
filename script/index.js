@@ -321,45 +321,66 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
-  document.querySelectorAll(".dropdown").forEach(dropdown => {
+  const ratingContainer = document.querySelector(".rating");
+
+  if (ratingContainer) {
+      console.log("Элемент .rating найден!");
+      
+      const stars = ratingContainer.querySelectorAll(".star");
+      let selectedRating = 0;
+
+      stars.forEach((star, index) => {
+          star.addEventListener("mouseover", () => {
+              stars.forEach((s, i) => s.classList.toggle("hovered", i <= index));
+          });
+
+          star.addEventListener("mouseout", () => {
+              stars.forEach((s) => s.classList.remove("hovered"));
+          });
+
+          star.addEventListener("click", () => {
+              selectedRating = index + 1;
+              stars.forEach((s, i) => s.classList.toggle("selected", i < selectedRating));
+              console.log(`Вы выбрали ${selectedRating} звезд`);
+          });
+      });
+  } else {
+      console.log("Элемент .rating не найден.");
+  }
+  
+
+
+  document.querySelectorAll(".dropdown").forEach((dropdown) => {
     const selected = dropdown.querySelector(".dropdown-selected");
     const list = dropdown.querySelector(".dropdown-list");
 
     if (!selected || !list) {
-        console.error("Ошибка: не найден .dropdown-selected или .dropdown-list в", dropdown);
-        return;
+      console.error(
+        "Ошибка: не найден .dropdown-selected или .dropdown-list в",
+        dropdown
+      );
+      return;
     }
-
     selected.addEventListener("click", (event) => {
-        event.stopPropagation(); // Чтобы клик не закрывал сразу dropdown
+      event.stopPropagation();
 
-        // Закрываем другие открытые dropdown
-        document.querySelectorAll(".dropdown").forEach(d => {
-            if (d !== dropdown) d.classList.remove("open");
-        });
-
-        // Открываем/закрываем текущий dropdown
-        dropdown.classList.toggle("open");
+      document.querySelectorAll(".dropdown").forEach((d) => {
+        if (d !== dropdown) d.classList.remove("open");
+      });
+      dropdown.classList.toggle("open");
     });
-
-    // Обрабатываем выбор элемента из списка
-    list.querySelectorAll("div").forEach(option => {
-        option.addEventListener("click", () => {
-            selected.querySelector("span").textContent = option.textContent;
-            dropdown.classList.remove("open");
-        });
-    });
-});
-
-// Закрываем dropdown при клике вне него
-document.addEventListener("click", () => {
-    document.querySelectorAll(".dropdown").forEach(dropdown => {
+    list.querySelectorAll("div").forEach((option) => {
+      option.addEventListener("click", () => {
+        selected.querySelector("span").textContent = option.textContent;
         dropdown.classList.remove("open");
+      });
     });
-});
-
-
-
+  });
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".dropdown").forEach((dropdown) => {
+      dropdown.classList.remove("open");
+    });
+  });
 
   document.querySelectorAll(".counter").forEach((counter) => {
     const countElement = counter.querySelector(".count");
@@ -443,46 +464,55 @@ document.addEventListener("click", () => {
     });
   }
 
+
   const designModal = document.getElementById("designModal");
   const authModal = document.getElementById("authModal");
+  const reviewModal = document.getElementById("reviewModal"); 
   const openDesignModalBtn = document.getElementById("openDesignModal");
   const openAuthModalBtn = document.getElementById("openAuthModal");
+  const openReviewModalBtn = document.getElementById("openReviewModal"); 
   const closeDesignModalBtn = document.getElementById("closeDesignModal");
   const closeAuthModalBtn = document.getElementById("closeAuthModal");
+  const closeReviewModalBtn = document.getElementById("closeReviewModal"); 
 
   function openModal(modal) {
     if (modal) {
       modal.style.display = "flex";
     }
   }
-
   function closeModal(modal) {
     if (modal) {
       modal.style.display = "none";
     }
   }
-
   if (openDesignModalBtn) {
     openDesignModalBtn.addEventListener("click", function () {
       openModal(designModal);
     });
   }
-
   if (openAuthModalBtn) {
     openAuthModalBtn.addEventListener("click", function () {
       openModal(authModal);
     });
   }
-
+  if (openReviewModalBtn) {
+    openReviewModalBtn.addEventListener("click", function () {
+      openModal(reviewModal);
+    });
+  }
   if (closeDesignModalBtn) {
     closeDesignModalBtn.addEventListener("click", function () {
       closeModal(designModal);
     });
   }
-
   if (closeAuthModalBtn) {
     closeAuthModalBtn.addEventListener("click", function () {
       closeModal(authModal);
+    });
+  }
+  if (closeReviewModalBtn) {
+    closeReviewModalBtn.addEventListener("click", function () {
+      closeModal(reviewModal);
     });
   }
 
@@ -493,7 +523,12 @@ document.addEventListener("click", () => {
     if (authModal && event.target === authModal) {
       closeModal(authModal);
     }
+    if (reviewModal && event.target === reviewModal) {
+      closeModal(reviewModal);
+    }
   });
+
+
 
   document.addEventListener("click", function (event) {
     let catalogButton = document.querySelector(".btn-catalog");
