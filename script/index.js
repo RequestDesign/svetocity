@@ -45,6 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var swiper = new Swiper(".mySwiper3", {
       slidesPerView: "auto",
       spaceBetween: 20,
+      navigation: {
+        nextEl: "#swiper-btn_next-3",
+        prevEl: "#swiper-btn_prev-3",
+      },
       breakpoints: {
         789: {
           slidesPerView: "auto",
@@ -172,6 +176,15 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.warn("Swiper контейнер не найден: .mySwiper");
   }
+  var swiper = new Swiper(".mySwiper5", {
+    slidesPerView: "auto",
+    spaceBetween: 10,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true, 
+    },
+  });
+
   const contents = document.querySelectorAll(".main-banner_content-block");
   contents.forEach((content, index) => {
     if (index === 0) {
@@ -321,34 +334,96 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
+  const showMoreBtn = document.getElementById("showMoreBtn");
+  const descriptionText = document.querySelector(
+    ".description_content .txt-main-24-16"
+  );
+  if (showMoreBtn && descriptionText) {
+    let isExpanded = false;
+    showMoreBtn.addEventListener("click", function () {
+      if (isExpanded) {
+        descriptionText.classList.remove("expanded");
+        showMoreBtn.textContent = "Показать еще";
+      } else {
+        descriptionText.classList.add("expanded");
+        showMoreBtn.textContent = "Скрыть"; 
+      }
+      isExpanded = !isExpanded; 
+    });
+  } else {
+    console.warn(
+      "Кнопка 'Показать еще' или текстовое описание не найдены на странице."
+    ); 
+  }
+
+  const showMoreSpecsBtn = document.getElementById("showMoreSpecsBtn");
+  const specificationsContent = document.querySelector(
+    ".left-specifications_content"
+  );
+  if (showMoreSpecsBtn && specificationsContent) {
+    let isSpecsExpanded = false;
+    showMoreSpecsBtn.addEventListener("click", function () {
+      if (isSpecsExpanded) {
+        specificationsContent.classList.remove("expanded");
+        showMoreSpecsBtn.textContent = "Показать еще";
+      } else {
+        specificationsContent.classList.add("expanded");
+        showMoreSpecsBtn.textContent = "Скрыть";
+      }
+      isSpecsExpanded = !isSpecsExpanded;
+    });
+  } else {
+    console.warn(
+      "Кнопка 'Показать еще характеристики' или контент характеристик не найдены на странице."
+    );
+  }
+
+  const bigImage = document.querySelector(".image-big");
+  const smallImages = document.querySelectorAll(".image-little");
+
+  smallImages.forEach((smallImage) => {
+    smallImage.addEventListener("click", function () {
+      bigImage.classList.add("fade-out");
+      smallImage.classList.add("fade-out");
+
+      setTimeout(() => {
+        const tempSrc = bigImage.src;
+        bigImage.src = smallImage.src;
+        smallImage.src = tempSrc;
+        bigImage.classList.remove("fade-out");
+        smallImage.classList.remove("fade-out");
+      }, 300);
+    });
+  });
+
   const ratingContainer = document.querySelector(".rating");
 
   if (ratingContainer) {
-      console.log("Элемент .rating найден!");
-      
-      const stars = ratingContainer.querySelectorAll(".star");
-      let selectedRating = 0;
+    console.log("Элемент .rating найден!");
 
-      stars.forEach((star, index) => {
-          star.addEventListener("mouseover", () => {
-              stars.forEach((s, i) => s.classList.toggle("hovered", i <= index));
-          });
+    const stars = ratingContainer.querySelectorAll(".star");
+    let selectedRating = 0;
 
-          star.addEventListener("mouseout", () => {
-              stars.forEach((s) => s.classList.remove("hovered"));
-          });
-
-          star.addEventListener("click", () => {
-              selectedRating = index + 1;
-              stars.forEach((s, i) => s.classList.toggle("selected", i < selectedRating));
-              console.log(`Вы выбрали ${selectedRating} звезд`);
-          });
+    stars.forEach((star, index) => {
+      star.addEventListener("mouseover", () => {
+        stars.forEach((s, i) => s.classList.toggle("hovered", i <= index));
       });
-  } else {
-      console.log("Элемент .rating не найден.");
-  }
-  
 
+      star.addEventListener("mouseout", () => {
+        stars.forEach((s) => s.classList.remove("hovered"));
+      });
+
+      star.addEventListener("click", () => {
+        selectedRating = index + 1;
+        stars.forEach((s, i) =>
+          s.classList.toggle("selected", i < selectedRating)
+        );
+        console.log(`Вы выбрали ${selectedRating} звезд`);
+      });
+    });
+  } else {
+    console.log("Элемент .rating не найден.");
+  }
 
   document.querySelectorAll(".dropdown").forEach((dropdown) => {
     const selected = dropdown.querySelector(".dropdown-selected");
@@ -464,16 +539,58 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  const btnSpecifications = document.getElementById("btn-specifications");
+  const btnDescription = document.getElementById("btn-description");
+  const btnReviews = document.getElementById("btn-reviews");
+  const specificationsBlock = document.getElementById("specifications");
+  const descriptionBlock = document.getElementById("description");
+  const reviewsBlock = document.getElementById("reviews");
+
+  if (
+    btnSpecifications &&
+    btnDescription &&
+    btnReviews &&
+    specificationsBlock &&
+    descriptionBlock &&
+    reviewsBlock
+  ) {
+    btnSpecifications.addEventListener("click", function () {
+      toggleContent("specifications");
+      setActiveButton(btnSpecifications, btnDescription, btnReviews);
+    });
+    btnDescription.addEventListener("click", function () {
+      toggleContent("description");
+      setActiveButton(btnDescription, btnSpecifications, btnReviews);
+    });
+    btnReviews.addEventListener("click", function () {
+      toggleContent("reviews");
+      setActiveButton(btnReviews, btnSpecifications, btnDescription);
+    });
+  }
+
+  function toggleContent(contentType) {
+    specificationsBlock.style.display = "none";
+    descriptionBlock.style.display = "none";
+    reviewsBlock.style.display = "none";
+    document.getElementById(contentType).style.display = "grid";
+  }
+
+  function setActiveButton(activeButton, ...inactiveButtons) {
+    inactiveButtons.forEach((button) =>
+      button.classList.remove("btn-specif_active")
+    );
+    activeButton.classList.add("btn-specif_active");
+  }
 
   const designModal = document.getElementById("designModal");
   const authModal = document.getElementById("authModal");
-  const reviewModal = document.getElementById("reviewModal"); 
+  const reviewModal = document.getElementById("reviewModal");
   const openDesignModalBtn = document.getElementById("openDesignModal");
   const openAuthModalBtn = document.getElementById("openAuthModal");
-  const openReviewModalBtn = document.getElementById("openReviewModal"); 
+  const openReviewModalBtn = document.getElementById("openReviewModal");
   const closeDesignModalBtn = document.getElementById("closeDesignModal");
   const closeAuthModalBtn = document.getElementById("closeAuthModal");
-  const closeReviewModalBtn = document.getElementById("closeReviewModal"); 
+  const closeReviewModalBtn = document.getElementById("closeReviewModal");
 
   function openModal(modal) {
     if (modal) {
@@ -527,8 +644,6 @@ document.addEventListener("DOMContentLoaded", function () {
       closeModal(reviewModal);
     }
   });
-
-
 
   document.addEventListener("click", function (event) {
     let catalogButton = document.querySelector(".btn-catalog");
