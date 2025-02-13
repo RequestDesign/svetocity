@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
     spaceBetween: 10,
     pagination: {
       el: ".swiper-pagination",
-      clickable: true, 
+      clickable: true,
     },
   });
 
@@ -334,6 +334,150 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
+  const minPrice = document.getElementById("min-price");
+  const maxPrice = document.getElementById("max-price");
+  const minPriceInput = document.getElementById("min-price-input");
+  const maxPriceInput = document.getElementById("max-price-input");
+  const progress = document.querySelector(".progress");
+  const gap = 30;
+
+  if (minPrice && maxPrice && minPriceInput && maxPriceInput && progress) {
+    function updateSlider() {
+      let minVal = parseInt(minPrice.value);
+      let maxVal = parseInt(maxPrice.value);
+
+      if (maxVal - minVal < gap) {
+        if (event.target === minPrice) {
+          minPrice.value = maxVal - gap;
+        } else {
+          maxPrice.value = minVal + gap;
+        }
+      }
+
+      minPriceInput.value = minPrice.value;
+      maxPriceInput.value = maxPrice.value;
+
+      let percentMin = (minPrice.value / minPrice.max) * 100;
+      let percentMax = (maxPrice.value / maxPrice.max) * 100;
+      progress.style.left = percentMin + "%";
+      progress.style.width = percentMax - percentMin + "%";
+    }
+
+    minPrice.addEventListener("input", updateSlider);
+    maxPrice.addEventListener("input", updateSlider);
+    minPriceInput.addEventListener("input", () => {
+      minPrice.value = minPriceInput.value;
+      updateSlider();
+    });
+    maxPriceInput.addEventListener("input", () => {
+      maxPrice.value = maxPriceInput.value;
+      updateSlider();
+    });
+
+    updateSlider();
+  } else {
+    console.warn("Один или несколько элементов не найдены на странице.");
+  }
+
+  const showFilterButton = document.querySelector(".filters-btn_visib");
+  const showFilterText = document.querySelector(".filters-btn_visib-text");
+
+  const filters = document.querySelector(".filters");
+
+  if (showFilterButton) {
+    showFilterButton.addEventListener("click", () => {
+      if (filters.style.display === "grid") {
+        filters.style.display = "none";
+        showFilterText.textContent = "Показать фильтр";
+      } else {
+        filters.style.display = "grid";
+        showFilterText.textContent = "Скрыть фильтр";
+      }
+    });
+  }
+
+  const showMoreButton = document.querySelector(".text-visib");
+  const productBlock = document.querySelector(
+    ".catalog-main-products__main-block"
+  );
+  if (showMoreButton && productBlock) {
+    productBlock.classList.add("hidden");
+    showMoreButton.addEventListener("click", () => {
+      if (productBlock.classList.contains("hidden")) {
+        productBlock.classList.remove("hidden");
+        showMoreButton.textContent = "Скрыть";
+      } else {
+        productBlock.classList.add("hidden");
+        showMoreButton.textContent = "Показать еще";
+      }
+    });
+  } else {
+    console.warn("Кнопка или блок с товарами не найдены на странице.");
+  }
+
+  document.querySelectorAll(".filter-title").forEach((title) => {
+    if (title) {
+      title.addEventListener("click", () => {
+        const group = title.parentElement;
+        const toggleIcon = title.querySelector(".toggle-filter");
+        if (group && toggleIcon) {
+          group.classList.toggle("open");
+          toggleIcon.classList.toggle("toggle-filter_active");
+        }
+      });
+    }
+  });
+
+  const sortToggles = document.querySelectorAll(".sort-toggle");
+const sortOptionsList = document.querySelectorAll(".sort-options");
+
+sortToggles.forEach((sortToggle, index) => {
+    const sortOptions = sortOptionsList[index];
+    const selectedSort = sortToggle.querySelector(".selected-sort");
+
+    sortToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        if (
+            sortOptions.style.display === "flex" ||
+            sortOptions.style.display === "grid"
+        ) {
+            sortOptions.style.display = "none";
+        } else {
+            if (window.matchMedia("(max-width: 48em)").matches) {
+                sortOptions.style.display = "grid";
+            } else {
+                sortOptions.style.display = "flex";
+            }
+        }
+    });
+
+    const sortRadios = sortOptions.querySelectorAll(".sort-option input");
+    if (sortRadios.length > 0) {
+        sortRadios.forEach((radio) => {
+            radio.addEventListener("change", function () {
+                selectedSort.textContent = this.value; 
+                sortOptions.style.display = "none";
+            });
+        });
+    } else {
+        console.warn("Радиокнопки сортировки не найдены.");
+    }
+});
+
+// Обработчик клика по документу для закрытия списка сортировки при клике вне
+document.addEventListener("click", function (event) {
+    sortOptionsList.forEach((sortOptions) => {
+        if (
+            (sortOptions.style.display === "flex" || sortOptions.style.display === "grid") &&
+            !sortOptions.contains(event.target) && 
+            !event.target.classList.contains("sort-toggle") 
+        ) {
+            sortOptions.style.display = "none"; 
+        }
+    });
+});
+
+
   const showMoreBtn = document.getElementById("showMoreBtn");
   const descriptionText = document.querySelector(
     ".description_content .txt-main-24-16"
@@ -346,14 +490,14 @@ document.addEventListener("DOMContentLoaded", function () {
         showMoreBtn.textContent = "Показать еще";
       } else {
         descriptionText.classList.add("expanded");
-        showMoreBtn.textContent = "Скрыть"; 
+        showMoreBtn.textContent = "Скрыть";
       }
-      isExpanded = !isExpanded; 
+      isExpanded = !isExpanded;
     });
   } else {
     console.warn(
       "Кнопка 'Показать еще' или текстовое описание не найдены на странице."
-    ); 
+    );
   }
 
   const showMoreSpecsBtn = document.getElementById("showMoreSpecsBtn");
