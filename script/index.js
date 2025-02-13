@@ -176,14 +176,19 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.warn("Swiper контейнер не найден: .mySwiper");
   }
-  var swiper = new Swiper(".mySwiper5", {
-    slidesPerView: "auto",
-    spaceBetween: 10,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
+  var swiperContainer = document.querySelector(".mySwiper5");
+  if (swiperContainer) {
+    var swiper = new Swiper(".mySwiper5", {
+      slidesPerView: "auto",
+      spaceBetween: 10,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  } else {
+    console.warn("Swiper контейнер не найден: .mySwiper5");
+  }
 
   const contents = document.querySelectorAll(".main-banner_content-block");
   contents.forEach((content, index) => {
@@ -334,6 +339,51 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_2);
   }
 
+  const fullCartBtn = document.getElementById("openFullCart");
+  const fullCartPopup = document.getElementById("cartPopupFull");
+  const closeFullCart = document.getElementById("closeFullCart");
+  const fullCartOverlay = document.getElementById("cartOverlayFull");
+
+  const emptyCartBtn = document.getElementById("openEmptyCart");
+  const emptyCartPopup = document.getElementById("cartPopup");
+  const closeEmptyCart = document.getElementById("closeEmptyCart");
+  const emptyCartOverlay = document.getElementById("cartOverlayEmpty");
+  function openPopup(btn, popup, overlay) {
+    if (btn && popup && overlay) {
+      btn.addEventListener("mouseenter", function () {
+        popup.style.display = "grid";
+        overlay.style.display = "block"; 
+      });
+      popup.addEventListener("mouseleave", function () {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      });
+    } else {
+      console.warn(
+        "Один или несколько элементов для открытия попапа не найдены."
+      );
+    }
+  }
+  function closePopup(btn, popup, overlay) {
+    if (btn && popup && overlay) {
+      btn.addEventListener("click", function () {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      });
+    } else {
+      console.warn(
+        "Один или несколько элементов для закрытия попапа не найдены."
+      );
+    }
+  }
+  openPopup(fullCartBtn, fullCartPopup, fullCartOverlay);
+  openPopup(emptyCartBtn, emptyCartPopup, emptyCartOverlay);
+
+  closePopup(closeFullCart, fullCartPopup, fullCartOverlay);
+  closePopup(closeEmptyCart, emptyCartPopup, emptyCartOverlay);
+
+
+
   const minPrice = document.getElementById("min-price");
   const maxPrice = document.getElementById("max-price");
   const minPriceInput = document.getElementById("min-price-input");
@@ -429,54 +479,53 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const sortToggles = document.querySelectorAll(".sort-toggle");
-const sortOptionsList = document.querySelectorAll(".sort-options");
+  const sortOptionsList = document.querySelectorAll(".sort-options");
 
-sortToggles.forEach((sortToggle, index) => {
+  sortToggles.forEach((sortToggle, index) => {
     const sortOptions = sortOptionsList[index];
     const selectedSort = sortToggle.querySelector(".selected-sort");
 
     sortToggle.addEventListener("click", function (event) {
-        event.stopPropagation();
-        if (
-            sortOptions.style.display === "flex" ||
-            sortOptions.style.display === "grid"
-        ) {
-            sortOptions.style.display = "none";
+      event.stopPropagation();
+      if (
+        sortOptions.style.display === "flex" ||
+        sortOptions.style.display === "grid"
+      ) {
+        sortOptions.style.display = "none";
+      } else {
+        if (window.matchMedia("(max-width: 48em)").matches) {
+          sortOptions.style.display = "grid";
         } else {
-            if (window.matchMedia("(max-width: 48em)").matches) {
-                sortOptions.style.display = "grid";
-            } else {
-                sortOptions.style.display = "flex";
-            }
+          sortOptions.style.display = "flex";
         }
+      }
     });
 
     const sortRadios = sortOptions.querySelectorAll(".sort-option input");
     if (sortRadios.length > 0) {
-        sortRadios.forEach((radio) => {
-            radio.addEventListener("change", function () {
-                selectedSort.textContent = this.value; 
-                sortOptions.style.display = "none";
-            });
+      sortRadios.forEach((radio) => {
+        radio.addEventListener("change", function () {
+          selectedSort.textContent = this.value;
+          sortOptions.style.display = "none";
         });
+      });
     } else {
-        console.warn("Радиокнопки сортировки не найдены.");
+      console.warn("Радиокнопки сортировки не найдены.");
     }
-});
+  });
 
-// Обработчик клика по документу для закрытия списка сортировки при клике вне
-document.addEventListener("click", function (event) {
+  document.addEventListener("click", function (event) {
     sortOptionsList.forEach((sortOptions) => {
-        if (
-            (sortOptions.style.display === "flex" || sortOptions.style.display === "grid") &&
-            !sortOptions.contains(event.target) && 
-            !event.target.classList.contains("sort-toggle") 
-        ) {
-            sortOptions.style.display = "none"; 
-        }
+      if (
+        (sortOptions.style.display === "flex" ||
+          sortOptions.style.display === "grid") &&
+        !sortOptions.contains(event.target) &&
+        !event.target.classList.contains("sort-toggle")
+      ) {
+        sortOptions.style.display = "none";
+      }
     });
-});
-
+  });
 
   const showMoreBtn = document.getElementById("showMoreBtn");
   const descriptionText = document.querySelector(
@@ -574,7 +623,7 @@ document.addEventListener("click", function (event) {
     const list = dropdown.querySelector(".dropdown-list");
 
     if (!selected || !list) {
-      console.error(
+      console.warn(
         "Ошибка: не найден .dropdown-selected или .dropdown-list в",
         dropdown
       );
