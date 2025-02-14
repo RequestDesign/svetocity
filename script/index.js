@@ -338,6 +338,65 @@ document.addEventListener("DOMContentLoaded", function () {
     myMap4.geoObjects.add(myPlacemark4_1);
     myMap4.geoObjects.add(myPlacemark4_2);
   }
+  const products = [
+    { name: "Ноутбук Asus" },
+    { name: "Ноутбук Asus" },
+    { name: "Ноутбук Asus" },
+    { name: "Ноутбук Asus" },
+    { name: "Смартфон Samsung" },
+    { name: "Клавиатура Logitech" },
+    { name: "Мышь Razer" }
+];
+
+const searchInput = document.querySelector(".search-input");
+const searchResults = document.querySelector(".search-results");
+const searchContainer = document.querySelector(".search");
+const searchResultsBlock = document.querySelector(".search-results_block");
+const searchButton = document.querySelector(".mobal-icon");
+
+searchButton.addEventListener("click", function() {
+  event.stopPropagation(); // Предотвращаем всплытие события
+  if (window.innerWidth <= 768) {
+      searchContainer.style.display = searchContainer.style.display === "none" || searchContainer.style.display === "" ? "flex" : "none";
+  }
+});
+
+searchInput.addEventListener("input", function() {
+    const query = this.value.toLowerCase();
+    searchResultsBlock.innerHTML = "";
+    
+    if (query) {
+        searchResults.style.display = "block";
+        const filtered = products.filter(product => product.name.toLowerCase().includes(query));
+        
+        if (filtered.length > 0) {
+            filtered.forEach(product => {
+                const div = document.createElement("div");
+                div.classList.add("search-result-item");
+                div.textContent = product.name;
+                div.addEventListener("click", () => {
+                    searchInput.value = product.name;
+                    searchResults.style.display = "none";
+                });
+                searchResultsBlock.appendChild(div);
+            });
+        } else {
+            searchResultsBlock.innerHTML = "<div class='search-result-item'>Ничего не найдено</div>";
+        }
+    } else {
+        searchResults.style.display = "none";
+    }
+});
+
+// Закрытие поиска при клике вне блока
+document.addEventListener("click", function(event) {
+    if (!searchContainer.contains(event.target) && !searchButton.contains(event.target)) {
+        searchResults.style.display = "none";
+        searchContainer.style.display = "none";
+        searchInput.value = "";
+    }
+});
+
 
   const fullCartBtn = document.getElementById("openFullCart");
   const fullCartPopup = document.getElementById("cartPopupFull");
@@ -352,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (btn && popup && overlay) {
       btn.addEventListener("mouseenter", function () {
         popup.style.display = "grid";
-        overlay.style.display = "block"; 
+        overlay.style.display = "block";
       });
       popup.addEventListener("mouseleave", function () {
         popup.style.display = "none";
@@ -381,8 +440,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   closePopup(closeFullCart, fullCartPopup, fullCartOverlay);
   closePopup(closeEmptyCart, emptyCartPopup, emptyCartOverlay);
-
-
 
   const minPrice = document.getElementById("min-price");
   const maxPrice = document.getElementById("max-price");
