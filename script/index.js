@@ -359,6 +359,7 @@ searchButton.addEventListener("click", function() {
   if (window.innerWidth <= 768) {
       searchContainer.style.display = searchContainer.style.display === "none" || searchContainer.style.display === "" ? "flex" : "none";
   }
+  searchResults.style.display = "none";
 });
 
 searchInput.addEventListener("input", function() {
@@ -392,7 +393,6 @@ searchInput.addEventListener("input", function() {
 document.addEventListener("click", function(event) {
     if (!searchContainer.contains(event.target) && !searchButton.contains(event.target)) {
         searchResults.style.display = "none";
-        searchContainer.style.display = "none";
         searchInput.value = "";
     }
 });
